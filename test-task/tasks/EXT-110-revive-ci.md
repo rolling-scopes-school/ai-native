@@ -1,7 +1,7 @@
 # EXT-110 — Revive CI on GitHub Actions
 
 > CI Revival · both tracks · free-form
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 The repository contains `.gitlab-ci.yml` — a CI pipeline from the platform the project used to live on. On GitHub it is dead weight: GitHub never executes it, so pull requests get no builds and no test runs. Figure out what the old pipeline did, and bring CI back to life on GitHub Actions. The docker-publish jobs are not needed (there is no registry to push to) — port only what earns its keep.
 

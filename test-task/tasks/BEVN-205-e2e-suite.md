@@ -1,7 +1,7 @@
 # BEVN-205 — End-to-End Test Suite
 
 > E2E Testing · both tracks · SPEC-DRIVEN
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 Cover the three critical user flows with end-to-end tests using Playwright. Tests run against the live `docker-compose` stack — no mocked API responses for happy-path scenarios. The suite is integrated into the GitLab CI pipeline and blocks merging on failure.
 

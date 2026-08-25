@@ -1,7 +1,7 @@
 # EXT-100 — Import the Route as GitHub Issues (MCP)
 
 > Setup · both tracks · free-form
-> Rules: [README.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 The route you are about to walk lives as markdown files in this program repository. Your **working repository** (your private copy of the code template) needs its own tracker: one GitHub Issue per task, so that every branch and PR can reference the issue it implements — the same "ticket → branch → PR" chain used on real projects.
 

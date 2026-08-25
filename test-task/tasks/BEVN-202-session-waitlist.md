@@ -1,7 +1,7 @@
 # BEVN-202 — Session Waitlist
 
 > Phase 2 — New Features · both tracks · SPEC-DRIVEN
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 When a session has reached its capacity, an attendee can join a waitlist. If a registered attendee cancels, the first person on the waitlist is automatically promoted to a confirmed registration. This promotion should be logged. The session detail page shows current registration count, capacity, and waitlist count.
 

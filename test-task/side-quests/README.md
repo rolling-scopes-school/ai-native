@@ -1,6 +1,6 @@
 # Side Quests — for the highly motivated
 
-The main route ([PRODUCT.md](../PRODUCT.md)) teaches you to work *inside* a delivery process. The side quests are about what that process is *made of*: project knowledge, automatic guardrails, a second pair of eyes before merge, reusable assets, autonomy, and the cost of your work. They are optional: not part of the main route, no effect on its assessment, taken up at will — but each one closes a skill that is part of everyday work on real AI-native projects.
+The main route ([README.md](../README.md)) teaches you to work *inside* a delivery process. The side quests are about what that process is *made of*: project knowledge, automatic guardrails, a second pair of eyes before merge, reusable assets, autonomy, and the cost of your work. They are optional: not part of the main route, no effect on its assessment, taken up at will — but each one closes a skill that is part of everyday work on real AI-native projects.
 
 The rules are the same as in the [test task rules](../README.md): an `EXT-3xx-slug` branch, the number in the session's first message, a PR, a devlog entry.
 

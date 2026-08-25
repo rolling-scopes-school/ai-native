@@ -1,7 +1,7 @@
 # BEVN-203 — Attendee Registration Dashboard
 
 > Phase 2 — New Features · both tracks · SPEC-DRIVEN
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 An attendee can view all their conference registrations in one place. The dashboard shows each registration with conference name, dates, status, and a cancel button. Cancellation triggers the same waitlist promotion logic as BEVN-202.
 
