@@ -9,6 +9,7 @@ Don't click the issues together by hand. This is your first agent task: set up t
 
 **Definition of Done:**
 - [ ] GitHub MCP server configured for your coding agent (how you did it — a couple of lines in `docs/devlog.md`)
+- [ ] The PR description states which track you chose (A or B) and one sentence on why — this is where your track choice is recorded
 - [ ] Your repository copy has one issue per task of your chosen track, in route order; the optional BEVN-101 is labeled as optional
 - [ ] Each issue: title `<ID> — <task name>`, body contains the full task text copied from this repository
 - [ ] The issues were created by the agent through MCP — not by hand in the web UI

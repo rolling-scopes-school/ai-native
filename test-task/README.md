@@ -23,7 +23,7 @@ The stack is **ASP.NET Core 6 + EF Core 6 + React + Vite + PostgreSQL**. Run `do
 
 ## The Route
 
-You work **individually**, tasks strictly in order — each one builds on the previous, so don't skip ahead. There are **two tracks**; choose by the backend stack you actually know — you must be able to *verify* the agent's output, not just apply it. State which track you chose in your very first PR.
+You work **individually**, tasks strictly in order — each one builds on the previous, so don't skip ahead. There are **two tracks**; choose by the backend stack you actually know — you must be able to *verify* the agent's output, not just apply it. The choice is recorded in your first task: EXT-100's PR states the track and why.
 
 **Track A — .NET.** Stabilize the existing backend, then build features on it.
 
@@ -113,7 +113,7 @@ Keep `docs/devlog.md` — a work journal, a few lines after each task. Both the 
 - where you had to step in by hand;
 - what you would do differently.
 
-The devlog is not paperwork for its own sake. The pilot ends with a **defense**: a call with a trainer where you talk through your work. A good devlog is a ready-made outline for that story; without one, weeks later you won't remember half of it.
+The devlog is a per-task checkpoint: the PR template in your repository has an "devlog updated" checkbox, and a task doesn't count as closed without its entry. It is not paperwork for its own sake. The pilot ends with a **defense**: a call with a trainer where you talk through your work. A good devlog is a ready-made outline for that story; without one, weeks later you won't remember half of it.
 
 ## Final Report
 
