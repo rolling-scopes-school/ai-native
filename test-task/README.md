@@ -1,7 +1,5 @@
 # Test Task: BrownEvents
 
-> *"All our events are brown as s... stale coffee"*
->
 > Читать по-русски: [README.ru.md](README.ru.md)
 
 In front of you is a brownfield: a working conference-management application that nobody has maintained for two years. Your job is to understand it, stabilize it, and build two features on top of it — working in tandem with a console AI agent. What's assessed is not only the result but *how* you work with the agent — which is why the task has traceability rules and a final report.
