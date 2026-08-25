@@ -1,7 +1,7 @@
 # BEVN-002 — API Documentation
 
 > Phase 0 — Discovery · both tracks · free-form
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 The API has no documentation. Add Swagger/OpenAPI so the API is self-describing and explorable without reading the source code. Ensure every endpoint has a description, shows its request/response schema, and is testable from the Swagger UI.
 

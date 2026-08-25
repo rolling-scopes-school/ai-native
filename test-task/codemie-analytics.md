@@ -41,16 +41,16 @@ npx -y -p @codemieai/code codemie analytics --report \
 
 2. **Do the task with your agent**, launching it from that folder — e.g. `claude`, `codex`, or `gemini`. Work as you normally would: the number of attempts and clarifications is not penalized; the overall approach is what's assessed.
 
-3. **When done, build the report for that folder only** (you can run it from the folder itself). The report must cover **the whole period of the task** — usually a week to 20 days, hence the 21-day window in the command:
+3. **When done, build the report for that folder only** (you can run it from the folder itself). The report must cover **the whole period of the task** — usually 14–20 days, hence the 30-day window in the command:
 
    ```bash
    npx -y -p @codemieai/code codemie analytics --report \
-     --last 21d --include-external \
+     --last 30d --include-external \
      --project brown-events-pilot \
      --report-format both --report-output ./report.html
    ```
 
-   *`--project brown-events-pilot` filters by folder name: only sessions from it get into the report; the rest of your projects and personal sessions stay out. If your folder is named differently — substitute your name. If the task took longer than three weeks — widen the window (e.g. `--last 30d`) or give exact dates: `--from ... --to ...`.*
+   *`--project brown-events-pilot` filters by folder name: only sessions from it get into the report; the rest of your projects and personal sessions stay out. If your folder is named differently — substitute your name. If the task took longer than a month — give exact dates: `--from ... --to ...`.*
 
 4. **Check and send.** Open `report.html` in a browser and make sure it contains only the test-task sessions. Then deliver both files — `report.json` and `report.html` — the way the task rules ask (committed to your repository).
 

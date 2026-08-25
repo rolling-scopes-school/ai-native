@@ -1,7 +1,7 @@
 # BEVN-104 — Standardize API Responses and Error Handling
 
 > Phase 1A — Stabilize · Track A only · free-form
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 The frontend team keeps running into surprises when consuming the API — different endpoints return data in different shapes, and when something breaks, the full ASP.NET error page (or raw stack trace) comes back. Fix this so the API is predictable for any caller.
 

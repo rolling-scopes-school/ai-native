@@ -1,7 +1,7 @@
 # BEVN-101 — Sessions Page Is Slow
 
 > Optional — SQL Performance · both tracks · free-form · Track B: do it BEFORE EXT-150
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 Users are complaining that opening a conference page takes noticeably longer when the conference has many sessions. No errors, the data loads — it's just slow. Find out why and fix it. The data returned must stay the same.
 

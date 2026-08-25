@@ -29,10 +29,10 @@ Since I've always been an optimist, I hope these 5 people will successfully get 
 ## How the selection works
 The selection for the projects has several steps, and the path is the same for everyone (both for EPAM employees who haven't worked by the AI Factory process before, and for external candidates).
 
-1. A test task from me. I expect many people will want to try, so the first filter is a [test task](../test-task/README.md): the rules, the task route, and the optional side quests are already published in this repository.
-2. Joining EPAM as a student, if you're not already in one of EPAM's learning labs (JS, Java, or .NET). The student status is essentially just access to EPAM's infrastructure and learning materials/tools, without a salary.
-3. A second test task, 2–3 weeks long. The task runs on a specially generated mock project. The project is intentionally imperfect, with problems typical of real codebases: what's tested here is not the ability to write from scratch, but the ability to find your way around someone else's code and validate what the agent produces. The test-task period is unpaid. The task is a series of learning user stories that you implement together with a coding agent. You do the first few however you like; the rest follow the AI Factory protocol (at this stage you get EPAM's specific tools).
-4. Based on step 3: if all goes well — consideration for a specific project. Project stacks are usually mixed, like React or Angular plus .NET or Java. Sometimes Full Stack JS.
+1. **A test task from me** — [already published in this repository](../test-task/README.md). This is the bulk of the whole journey: 2–3 weeks on an intentionally imperfect project with problems typical of real codebases. What's tested is not the ability to write from scratch, but the ability to find your way around someone else's code and validate what the agent produces; the final tasks follow a spec-driven process (superpowers). The test-task period is unpaid.
+2. **An interview** based on the test-task results.
+3. **Joining EPAM as a student**, if you're not already in one of EPAM's learning labs (JS, Java, or .NET). The student status means access to EPAM's infrastructure and to EPAM's version of the factory: a process very similar to the superpowers flow from the test task, with extra stages and small differences. There is no salary at this status.
+4. **The final week**: a couple more tasks, now following the factory process on EPAM's tools. If all goes well — consideration for a specific project. Project stacks are usually mixed, like React or Angular plus .NET or Java. Sometimes Full Stack JS.
 
 ## Requirements
 

@@ -1,7 +1,7 @@
 # EXT-150 — Migrate the Backend to TypeScript (NestJS)
 
 > Phase 1B — Migration · Track B only · SPEC-DRIVEN · replaces Phase 1A
-> Rules: [ASSIGNMENT.md](../README.md) · Route: [PRODUCT.md](../PRODUCT.md)
+> Rules & route: [README.md](../README.md)
 
 The team is consolidating on a TypeScript stack. Reimplement the backend in **TypeScript with NestJS and Prisma** (PostgreSQL stays), preserving the existing API surface so the React frontend keeps working unchanged. This is a *clean* migration: the defects you documented in BEVN-003 must be **fixed in the new backend, not ported**. NestJS maps almost one-to-one onto the ASP.NET Core structure — controllers, services, DI — so use the existing code as the source of truth for behavior, not as a style guide.
 
