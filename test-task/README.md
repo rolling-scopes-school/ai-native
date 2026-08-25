@@ -1,77 +1,77 @@
-# Тестовое задание: BrownEvents
+# Test Task: BrownEvents
 
-Перед вами — браунфилд: работающее приложение для управления конференциями, которое два года никто не поддерживал. Ваша задача — разобраться в нём, стабилизировать его и достроить две фичи, работая в паре с консольным AI-агентом. Оценивается не только результат, но и *как* вы работаете с агентом — поэтому у задания есть правила трассировки и финальный отчёт.
+In front of you is a brownfield: a working conference-management application that nobody has maintained for two years. Your job is to understand it, stabilize it, and build two features on top of it — working in tandem with a console AI agent. What's assessed is not only the result but *how* you work with the agent — which is why the task has traceability rules and a final report.
 
-**Срок: 14 дней** с момента, когда вы получили доступ к репозиторию.
+**Deadline: 14 days** from the moment you get access to the repository.
 
-## Что делать
+## What to Do
 
-Маршруты тасок описаны в [PRODUCT.md](PRODUCT.md) — читайте его первым. Есть **два трека**, выбирайте по бэкенд-стеку, которым владеете, — вы должны быть способны *проверять* работу агента, а не просто применять её:
+The task routes are described in [PRODUCT.md](PRODUCT.md) — read it first. There are **two tracks**; choose by the backend stack you actually know — you must be able to *verify* the agent's work, not just apply it:
 
-- **Трек A (.NET)** — 12 тасок: завести issues через MCP → разобраться в коде → оживить CI → починить поток регистрации в .NET → построить две фичи → покрыть e2e-тестами.
-- **Трек B (TypeScript)** — 10 тасок: завести issues через MCP → разобраться в коде → оживить CI → мигрировать бэкенд на NestJS + Prisma, починив найденные дефекты переносом → построить те же две фичи на новом бэкенде → покрыть e2e-тестами.
+- **Track A (.NET)** — 12 tasks: set up issues via MCP → understand the code → revive CI → fix the registration flow in .NET → build two features → cover them with e2e tests.
+- **Track B (TypeScript)** — 10 tasks: set up issues via MCP → understand the code → revive CI → migrate the backend to NestJS + Prisma, fixing the known defects along the way → build the same two features on the new backend → cover them with e2e tests.
 
-На обоих треках есть одна опциональная таска (BEVN-101, производительность запросов) — необязательная, но настоятельно рекомендуемая.
+Both tracks have one optional task (BEVN-101, query performance) — not required, but strongly recommended.
 
-Про номера: таски `BEVN-xxx` взяты из оригинальной библиотеки BrownEvents дословно (поэтому в номерах есть пропуски), таски `EXT-xxx` добавлены для этого пилота. Дополнения к оригинальным таскам помечены блоками «Pilot addition».
+About the numbering: `BEVN-xxx` tasks are taken verbatim from the original BrownEvents task library (hence the gaps in the numbers), `EXT-xxx` tasks were added for this pilot. Additions to original tasks are marked with "Pilot addition" blocks.
 
-Таски идут строго по порядку: каждая следующая опирается на предыдущие — перепрыгивать не стоит, сами себе усложните жизнь. Какой трек выбрали — напишите в первом же PR.
+Tasks go strictly in order: each one builds on the previous — don't skip ahead, you'd only make your own life harder. State which track you chose in your very first PR.
 
-Текст каждой таски лежит отдельным файлом в [`tasks/`](tasks/) этого репозитория. Первой таской (EXT-100) вы импортируете весь маршрут как GitHub Issues в свой рабочий репозиторий — дальше, начиная сессию, давайте агенту issue текущей таски, а не весь PRODUCT.md: агенту, как и вам, лишний контекст только мешает.
+Each task's text lives in its own file under [`tasks/`](tasks/) in this repository. In your first task (EXT-100) you import the whole route as GitHub Issues into your working repository — from then on, when starting a session, hand the agent the current task's issue rather than the whole PRODUCT.md: extra context hurts the agent just as it hurts you.
 
-Кроме основного маршрута есть **[сайд-квесты](side-quests/README.md)** — шесть опциональных заданий для особо мотивированных, про внутренности самого процесса: знания проекта для агента, hooks, критик до мержа, свой skill, автономный прогон, цена работы. На оценку основного маршрута не влияют; у каждого написано, зачем он.
+Beyond the main route there are **[side quests](side-quests/README.md)** — six optional assignments for the highly motivated, about the internals of the process itself: project knowledge for agents, hooks, a critic before merge, your own skill, an autonomous run, the cost of your work. They don't affect the main route's assessment; each explains why it exists.
 
-## Код
+## The Code
 
-Код живёт в отдельном **приватном** репозитории-шаблоне `brown-events-pilot` — доступ выдаётся после отклика (напишите в [чат](https://t.me/+u5HQoDbqaO4yMTI6)). Получив доступ:
+The code lives in a separate **private** template repository, `brown-events-pilot` — access is granted after you apply (write in the [chat](https://t.me/+u5HQoDbqaO4yMTI6)). Once you have access:
 
-1. Нажмите **Use this template** → создайте **свою приватную копию**.
-2. Добавьте проверяющего коллаборатором в свою копию.
-3. Вся работа — в вашей копии: issues, ветки, PR-ы, отчёт.
+1. Click **Use this template** → create **your own private copy**.
+2. Add the reviewer as a collaborator on your copy.
+3. All your work happens in your copy: issues, branches, PRs, the report.
 
-## Инструменты
+## Tools
 
-- **Консольный AI-агент** — обязателен: Claude Code, Codex CLI, Gemini CLI, Copilot CLI или Pi. Cursor, веб-чаты и плагины IDE не подходят — их сессии не попадут в отчёт (см. [codemie-analytics.md](codemie-analytics.md)).
-- **Node.js 20+** — для сборки отчёта в конце.
-- **Docker** — `docker-compose up --build` поднимает всё приложение (инструкции запуска — в README репозитория с кодом).
+- **A console AI agent** — required: Claude Code, Codex CLI, Gemini CLI, Copilot CLI, or Pi. Cursor, web chats, and IDE plugins won't do — their sessions don't make it into the report (see [codemie-analytics.md](codemie-analytics.md)).
+- **Node.js 20+** — to build the report at the end.
+- **Docker** — `docker-compose up --build` brings up the whole application (run instructions are in the code repository's README).
 
-## Правила работы
+## Working Rules
 
-Эти правила — то, что «прошивает» номер таски через всю цепочку тикет → ветка → сессии агента → коммиты → PR. Без них отчёт нечитаем, поэтому они обязательны.
+These rules are what threads the task number through the whole chain: ticket → branch → agent sessions → commits → PR. Without them the report is unreadable, so they are mandatory.
 
-1. **Одна таска — одна ветка.** Перед началом таски: `git checkout -b BEVN-001-codebase-map` (номер таски + короткий слаг). Работайте агентом только из этой ветки.
-2. **Первое сообщение каждой сессии агента начинайте с номера таски:** «*BEVN-104: приведи ответы API к единому формату...*». Это название сессии в отчёте.
-3. **Коммиты — с номером таски:** `docs: add architecture map (BEVN-001)`.
-4. **Одна таска — один Pull Request** в вашем репозитории: из ветки таски в `main`, номер в заголовке PR, ссылка на issue таски в описании (`Closes #N`). Проверили, что Definition of Done выполнен, — мержите сами и переходите к следующей таске.
+1. **One task — one branch.** Before starting a task: `git checkout -b BEVN-001-codebase-map` (task number + a short slug). Run your agent only from this branch.
+2. **Start the first message of every agent session with the task number:** "*BEVN-104: bring the API responses to a single format...*". This becomes the session's name in the report.
+3. **Commits carry the task number:** `docs: add architecture map (BEVN-001)`.
+4. **One task — one Pull Request** in your repository: from the task branch into `main`, the number in the PR title, a link to the task's issue in the description (`Closes #N`). Once you've checked the Definition of Done is met — merge it yourself and move to the next task.
 
-Количество сессий, попыток и уточнений **не штрафуется** — работайте как обычно. Смотреть будут на подход: как ставите задачу, как итерируете, доводите ли до результата.
+The number of sessions, attempts, and clarifications is **not penalized** — work as you normally would. What will be looked at is the approach: how you frame the task, how you iterate, whether you drive it to a result.
 
-## Процесс: свободный и spec-driven
+## Process: Free-Form and Spec-Driven
 
-У каждой таски в маршруте указан режим (см. таблицы в PRODUCT.md):
+Every task in the route has its mode marked (see the tables in PRODUCT.md):
 
-- **Свободный режим** (EXT-100, discovery, EXT-110, фиксы Phase 1A, BEVN-101, фронтенд-фикс) — работайте с агентом так, как вам удобно.
-- **Spec-driven** (EXT-150 миграция на треке B; BEVN-202, BEVN-203 и BEVN-205 на обоих треках) — до первой строчки кода должны появиться спека (что именно строим, спорные случаи решены) и план (как, по шагам). Оба документа коммитятся в ветку таски вместе с кодом — проверяющий будет читать их до диффа. Для миграции это не формальность: миграция без плана сжигает дни.
+- **Free-form** (EXT-100, discovery, EXT-110, the Phase 1A fixes, BEVN-101, the frontend fix) — work with your agent however you like.
+- **Spec-driven** (the EXT-150 migration on Track B; BEVN-202, BEVN-203, and BEVN-205 on both tracks) — before the first line of code there must be a spec (what exactly is being built, contentious cases resolved) and a plan (how, step by step). Both documents are committed into the task branch together with the code — the reviewer will read them before the diff. For the migration this is not a formality: a migration without a plan burns days.
 
-  - В Claude Code для этого ставится плагин [superpowers](https://github.com/obra/superpowers): его поток brainstorming → спека → план → реализация делает ровно это, спека и план сохраняются в `docs/superpowers/`.
-  - Если работаете в другом агенте — воспроизведите тот же поток: файлы `spec.md` и `plan.md` в PR обязательны.
+  - In Claude Code, install the [superpowers](https://github.com/obra/superpowers) plugin for this: its brainstorming → spec → plan → implementation flow does exactly that, saving the spec and plan under `docs/superpowers/`.
+  - If you work in another agent — reproduce the same flow: `spec.md` and `plan.md` files in the PR are mandatory.
 
-**CI как гейт.** Начиная с таски, следующей за EXT-110, PR мержится только с зелёным CI. Красный пайплайн — это часть задачи, а не фон.
+**CI as a gate.** Starting from the task after EXT-110, a PR merges only with green CI. A red pipeline is part of the task, not background noise.
 
-## Лог разработки и защита
+## Development Log and Defense
 
-Ведите `docs/devlog.md` — журнал работы, по несколько строк после каждой таски. Писать может и агент (поручите ему в конце сессии), и вы сами; важно, чтобы там было ваше, а не пересказ диффа:
+Keep `docs/devlog.md` — a work journal, a few lines after each task. Both the agent (ask it at the end of a session) and you can write it; what matters is that it holds *your* take, not a retelling of the diff:
 
-- что делали и что получилось;
-- какие решения агент принял *сам* и почему вы их приняли или переделали;
-- где пришлось вмешаться руками;
-- что сделали бы иначе.
+- what you did and what came of it;
+- which decisions the agent made *on its own*, and why you accepted or redid them;
+- where you had to step in by hand;
+- what you would do differently.
 
-Devlog — не отчётность ради отчётности. Финал пилота — **защита**: созвон с тренером, где вы рассказываете о своей работе. Хороший devlog — это готовый конспект этого рассказа; без него через две недели вы не вспомните и половины.
+The devlog is not paperwork for its own sake. The pilot ends with a **defense**: a call with a trainer where you talk through your work. A good devlog is a ready-made outline for that story; without one, two weeks later you won't remember half of it.
 
-## Финальный отчёт
+## Final Report
 
-Когда все таски вашего трека смержены, соберите отчёт о вашей работе с агентом. Из папки репозитория:
+Once every task of your track is merged, build the report on your work with the agent. From the repository folder:
 
 ```bash
 npx -y -p @codemieai/code codemie analytics --report \
@@ -80,22 +80,22 @@ npx -y -p @codemieai/code codemie analytics --report \
   --report-format both --report-output ./report/report.html
 ```
 
-`--project brown-events-pilot` — фильтр по имени папки: если клонировали репозиторий в папку с другим именем, подставьте своё. Окно `--last 21d` покрывает две недели работы с запасом; если работали дольше — укажите точные даты (`--from ... --to ...`).
+`--project brown-events-pilot` filters by folder name: if you cloned the repository into a differently named folder, substitute yours. The `--last 21d` window covers two weeks of work with a margin; if you worked longer — give exact dates (`--from ... --to ...`).
 
-Дальше:
+Then:
 
-1. **Откройте `report/report.html` в браузере** и проверьте глазами: внутри только сессии этого проекта, ничего лишнего. Что попадает в отчёт и что нет — в [codemie-analytics.md](codemie-analytics.md); коротко: метрики сессий, ветки и текст первого сообщения каждой сессии, но не полные диалоги и не содержимое файлов.
-2. **Закоммитьте оба файла** (`report/report.html`, `report/report.json`) последним PR в свой репозиторий.
-3. **Напишите проверяющему**, что задание готово.
+1. **Open `report/report.html` in a browser** and check it with your own eyes: only this project's sessions inside, nothing extra. What gets into the report and what doesn't — see [codemie-analytics.md](codemie-analytics.md); in short: session metrics, branches, and the text of each session's first message, but no full dialogues and no file contents.
+2. **Commit both files** (`report/report.html`, `report/report.json`) as the final PR into your repository.
+3. **Tell the reviewer** the task is done.
 
-## Что будет оцениваться
+## What Will Be Assessed
 
-- Само решение: выполнен ли Definition of Done каждой таски, качество кода и документов.
-- Спека и план в spec-driven тасках: полнота, решённые развилки, соответствие плана реализации.
-- Трассировка: читается ли по репозиторию и отчёту цепочка «таска → сессии → коммиты → PR», зелёный ли CI на мержах после EXT-110.
-- Работа с агентом по отчёту и devlog: как ставите задачи, как итерируете, замечаете ли решения, которые агент принял молча, — не число попыток.
-- Защита: связный рассказ о своей работе на финальном созвоне.
+- The solution itself: is each task's Definition of Done met; the quality of the code and documents.
+- The spec and plan in spec-driven tasks: completeness, resolved forks, whether the implementation follows the plan.
+- Traceability: can the "task → sessions → commits → PR" chain be read from the repository and the report; is CI green on merges after EXT-110.
+- Your work with the agent, per the report and the devlog: how you frame tasks, how you iterate, whether you notice decisions the agent made silently — not the number of attempts.
+- The defense: a coherent account of your work on the final call.
 
-## Вопросы
+## Questions
 
-Если что-то не поднимается, не собирается или непонятно сформулировано — напишите проверяющему сразу, не тратьте дни на борьбу с окружением. Борьба с легаси-кодом — часть задания; борьба с инструкцией — нет.
+If something won't start, won't build, or is worded unclearly — write to the reviewer right away instead of losing days fighting the environment. Fighting legacy code is part of the task; fighting the instructions is not.

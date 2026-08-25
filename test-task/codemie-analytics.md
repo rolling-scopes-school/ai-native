@@ -1,29 +1,29 @@
-# CodeMie Analytics для студентов
-> Текст написан в тандеме: Дмитрий Воробей и Claude Fable, критиковал GPT Sol.
-> 24 августа 2026.
+# CodeMie Analytics for Students
+> Written in tandem: Dzmitry Varabei and Claude Fable, critiqued by GPT Sol.
+> August 24, 2026.
 
-Как одной командой собрать отчёт о вашей работе с AI-агентами и отправить преподавателю только то, что относится к тестовому заданию.
+How to build a report on your work with AI agents in one command — and send the reviewer only what belongs to the test task.
 
-## Что это за инструмент
+## What This Tool Is
 
-[CodeMie CLI](https://github.com/codemie-ai/codemie-code) (`@codemieai/code`) — открытая утилита (Apache-2.0) от команды EPAM AI/Run. Это довольно большой набор инструментов: единый запуск разных AI-агентов, работа с корпоративными и внешними моделями, SSO и прокси, установка и настройка агентов, аналитика и другие функции. Часть возможностей ориентирована на корпоративное использование и может требовать учётной записи или инфраструктуры EPAM. Вам всё это не понадобится — из всех возможностей CodeMie CLI нам нужна только аналитика, доступная через команду codemie analytics.
+[CodeMie CLI](https://github.com/codemie-ai/codemie-code) (`@codemieai/code`) is an open-source utility (Apache-2.0) from the EPAM AI/Run team. It's a fairly large toolbox: a single launcher for different AI agents, corporate and external model access, SSO and proxy, agent installation and configuration, analytics, and more. Some capabilities target corporate use and may require an EPAM account or infrastructure. You won't need any of that — out of everything CodeMie CLI can do, we only need the analytics, available through the `codemie analytics` command.
 
-**Команда `codemie analytics`.** умеет читать локальные журналы сессий, которые ваши AI-агенты и пишут на диск (Claude Code — в `~/.claude`, аналогично Codex, Gemini CLI, Copilot CLI, Pi), и собирать из них наглядный отчёт: сколько было сессий, сколько итераций и вызовов инструментов, какие файлы менялись, сколько токенов потрачено. Работать вы продолжаете своим обычным инструментом — CodeMie ничего не перехватывает и не встаёт «между» вами и агентом.
+**The `codemie analytics` command** reads the local session logs that your AI agents already write to disk (Claude Code — to `~/.claude`; likewise Codex, Gemini CLI, Copilot CLI, Pi) and assembles them into a readable report: how many sessions, how many turns and tool calls, which files changed, how many tokens were spent. You keep working in your usual tool — CodeMie doesn't intercept anything and doesn't sit "between" you and the agent.
 
-> **Про приватность.** Отчёт от `codemie analytics` — это просто два файла (`.html` и `.json`), которые создаются **локально в текущей папке**. Команда ничего никуда не отправляет: ни в EPAM, ни на серверы CodeMie, ни преподавателю. Показываете отчёт только вы сами и только тому, кому решите его переслать. Перед отправкой откройте `.html` в браузере и посмотрите, что внутри.
+> **On privacy.** The `codemie analytics` report is just two files (`.html` and `.json`) created **locally in the current folder**. The command sends nothing anywhere: not to EPAM, not to CodeMie servers, not to the reviewer. Only you see the report, and only the person you choose to send it to. Before sending, open the `.html` in a browser and check what's inside.
 >
-> Что попадает в отчёт: метрики сессий, пути к папкам проектов и **текст вашего первого сообщения в каждой сессии**. Полные диалоги с агентом — не попадают.
+> What gets into the report: session metrics, project folder paths, and **the text of your first message in each session**. Full dialogues with the agent do not.
 
-## Что понадобится
+## What You'll Need
 
-- **Node.js версии 20 или новее**.
-- **Консольный AI-агент**, в котором вы работаете: Claude Code, Codex CLI, Gemini CLI, Copilot CLI или Pi. *Cursor, веб-чаты (claude.ai, ChatGPT) и плагины IDE в отчёт не попадают — задание нужно делать именно в консольном агенте.*
+- **Node.js version 20 or newer**.
+- **The console AI agent** you work in: Claude Code, Codex CLI, Gemini CLI, Copilot CLI, or Pi. *Cursor, web chats (claude.ai, ChatGPT), and IDE plugins don't make it into the report — the task must be done in a console agent.*
 
-Устанавливать CodeMie глобально не обязательно — все команды ниже запускаются через `npx` и скачивают утилиту на лету.
+Installing CodeMie globally is not necessary — every command below runs through `npx` and downloads the utility on the fly.
 
-## Посмотреть аналитику по всем своим проектам
+## See the Analytics for All Your Projects
 
-Это необязательный шаг «для себя» — чтобы понять, как выглядит отчёт, и увидеть статистику всей вашей работы с агентами за неделю:
+This is an optional "for yourself" step — to see what the report looks like and get the stats of all your agent work for a week:
 
 ```bash
 npx -y -p @codemieai/code codemie analytics --report \
@@ -31,50 +31,46 @@ npx -y -p @codemieai/code codemie analytics --report \
   --report-format both --report-output ./my-report.html
 ```
 
-В текущей папке появятся `my-report.html` (дашборд — откройте в браузере) и `my-report.json` (те же данные для машинной обработки). Ключ `--include-external` включает в отчёт все нативные сессии агентов на машине, `--last 7d` — окно в 7 дней (можно `--last 24h` или точные даты через `--from 2026-08-20 --to 2026-08-24`).
+`my-report.html` (a dashboard — open it in a browser) and `my-report.json` (the same data for machine processing) appear in the current folder. The `--include-external` flag includes all native agent sessions on the machine; `--last 7d` is a 7-day window (you can use `--last 24h`, or exact dates via `--from 2026-08-20 --to 2026-08-24`).
 
-*Этот полный отчёт никому отправлять не нужно — в нём будут все ваши проекты и личные сессии.*
+*Don't send this full report to anyone — it contains all your projects and personal sessions.*
 
-## Собрать отчёт по тестовому заданию
+## Build the Report for the Test Task
 
-1. **Создайте отдельную папку под задание** и работайте только в ней:
+1. **Work in a dedicated folder** — your working repository copy — and only in it.
 
-   ```bash
-   mkdir test-task && cd test-task
-   ```
+2. **Do the task with your agent**, launching it from that folder — e.g. `claude`, `codex`, or `gemini`. Work as you normally would: the number of attempts and clarifications is not penalized; the overall approach is what's assessed.
 
-2. **Выполните задание своим агентом**, запуская его из этой папки — например `claude`, `codex` или `gemini`. Работайте как обычно: количество попыток и уточнений не штрафуется, оценивается подход в целом.
-
-3. **Когда закончите, соберите отчёт только по этой папке** (запускать можно из неё же). Отчёт должен покрывать **весь период выполнения задания** — обычно это от недели до 20 дней, поэтому в команде стоит окно в 21 день:
+3. **When done, build the report for that folder only** (you can run it from the folder itself). The report must cover **the whole period of the task** — usually a week to 20 days, hence the 21-day window in the command:
 
    ```bash
    npx -y -p @codemieai/code codemie analytics --report \
      --last 21d --include-external \
-     --project test-task \
+     --project brown-events-pilot \
      --report-format both --report-output ./report.html
    ```
 
-   *`--project test-task` — фильтр по имени папки: в отчёт попадут только сессии из неё, остальные ваши проекты и личные сессии останутся за бортом. Если папку назвали иначе — подставьте своё имя. Если делали задание дольше трёх недель — увеличьте окно (например, `--last 30d`) или укажите точные даты: `--from 2026-08-04 --to 2026-08-24`.*
+   *`--project brown-events-pilot` filters by folder name: only sessions from it get into the report; the rest of your projects and personal sessions stay out. If your folder is named differently — substitute your name. If the task took longer than three weeks — widen the window (e.g. `--last 30d`) or give exact dates: `--from ... --to ...`.*
 
-4. **Проверьте и отправьте.** Откройте `report.html` в браузере и убедитесь, что там только сессии тестового задания. Затем пришлите преподавателю оба файла — `report.json` и `report.html`.
+4. **Check and send.** Open `report.html` in a browser and make sure it contains only the test-task sessions. Then deliver both files — `report.json` and `report.html` — the way the task rules ask (committed to your repository).
 
-## Важно! Номер стори — в ветке, коммитах и сессиях
+## Important! The Task Number Goes into the Branch, the Commits, and the Sessions
 
-Если задание разбито на стори/GitHub issues, каждую активность нужно привязывать к номеру стори — так проверяющий сможет проследить всю цепочку «тикет → сессии с агентом → коммиты → PR». В коммитах и PR это привычно, а вот как номер попадает **в сессии**: отчёт аналитики записывает у каждой сессии два поля — ветку git и текст вашего первого сообщения. Через них номер и «прошивается»:
+Every activity must be tied to its task number — that's how the reviewer traces the whole chain "ticket → agent sessions → commits → PR". In commits and PRs this is routine; here is how the number gets **into the sessions**: the analytics report records two fields per session — the git branch and the text of your first message. The number is threaded through them:
 
-1. **Ветка = номер стори.** Перед началом работы над стори создайте ветку с её номером: `git checkout -b EPMCDME-123-add-login`. Каждая сессия агента на этой ветке автоматически получит номер в поле `branch` отчёта — это самый надёжный механизм, забыть его невозможно.
-2. **Первое сообщение сессии начинайте с номера:** «*EPMCDME-123: добавь валидацию формы логина...*». Первое сообщение попадает в отчёт как название сессии — список сессий станет читаться как «какая сессия — на какую стори». Это подстраховка для сессий, где ветки ещё нет (обсуждение, планирование на `main`).
-3. **Коммиты и PR** — как просит тренер: номер в сообщении коммита (`feat: add login (EPMCDME-123)`) и в заголовке PR.
+1. **Branch = task number.** Before starting a task, create a branch with its number: `git checkout -b BEVN-104-standardize-responses`. Every agent session on that branch automatically gets the number in the report's `branch` field — the most reliable mechanism, impossible to forget.
+2. **Start the session's first message with the number:** "*BEVN-104: standardize the API error responses...*". The first message becomes the session's title — the session list reads as "which session — for which task". This is the backup for sessions where no branch exists yet (discussion, planning on `main`).
+3. **Commits and PRs** — as the rules ask: the number in the commit message (`feat: add waitlist (BEVN-202)`) and in the PR title.
 
-Бонус: по ветке отчёт можно срезать под одну стори — `codemie analytics --report --branch EPMCDME-123 ...` покажет только её сессии.
+Bonus: the report can be sliced per task by branch — `codemie analytics --report --branch BEVN-202 ...` shows only that task's sessions.
 
-## Что увидит проверяющий
+## What the Reviewer Will See
 
-| В отчёте есть | В отчёте нет |
+| In the report | Not in the report |
 |---|---|
-| Число сессий, итераций (turns) и вызовов инструментов, доля успешных | Полной переписки с агентом |
-| Первое сообщение каждой сессии — как вы поставили задачу | Содержимого ваших файлов |
-| Какие файлы менялись, строки добавлены/удалены, языки | Ваших ключей, токенов и паролей |
-| Модели, токены и оценка стоимости | Ничего из других папок — при использовании `--project` |
+| Number of sessions, turns and tool calls, success share | Your full dialogues with the agent |
+| Each session's first message — how you framed the task | The contents of your files |
+| Which files changed, lines added/removed, languages | Your keys, tokens, and passwords |
+| Models, tokens, and a cost estimate | Anything from other folders — when `--project` is used |
 
-Метрики нужны не чтобы «поймать» вас на числе попыток, а чтобы увидеть, *как* вы работаете с агентом: как формулируете задачу, как итерируете, доводите ли до результата. Оценивается это вместе с самим решением задания.
+The metrics are not there to "catch" you on the number of attempts, but to see *how* you work with the agent: how you frame the task, how you iterate, whether you drive it to a result. This is assessed together with the solution itself.

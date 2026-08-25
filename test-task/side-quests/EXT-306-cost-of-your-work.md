@@ -1,12 +1,17 @@
-# EXT-306 — Сколько стоила ваша работа (после финального отчёта)
-> Optional side quest · both tracks · не входит в основной маршрут
-> Rules: [ASSIGNMENT.md](../README.md) · Quest map: [side-quests/README.md](README.md)
+# EXT-306 — What Your Work Cost (after the final report)
 
-**Зачем:** на реальных AI-native проектах инференс — статья расходов уровня 5% выручки, а задача средней сложности стоит десятки долларов; оператор обязан видеть цену своей работы, на стадии реализации это буквально главное, что он контролирует.
-**Что тренирует:** чтение токеномики прогона, атрибуция стоимости по стадиям, суждение «где дорого и почему».
-**Реальная проблема за миссией:** в производственных буткемпах действует правило раннего стопа — если маленькая задача съела $10 уже на спеке, её останавливают и разбирают; без привычки смотреть на цену это правило не сработает никогда.
-**Задача:** по `report/report.json` и данным `/cost` из сессий разберите стоимость вашего маршрута: сколько стоила каждая таска; внутри одной spec-driven таски — сколько спека, план, реализация; сравните среднюю free-form таску со spec-driven.
-**DoD:**
-- [ ] `docs/tokenomics.md`: таблица «таска → сессии → токены → оценка стоимости»
-- [ ] Для одной spec-driven таски — разбивка по стадиям
-- [ ] Три вывода и одно конкретное предложение, что бы вы делали дешевле
+> Optional side quest · both tracks · not part of the main route
+> Rules: [test task](../README.md) · Quest map: [side-quests/README.md](README.md)
+
+**Why:** on real AI-native projects inference is a cost line on the order of 5% of revenue, and a task of average complexity costs tens of dollars; an operator must see the price of their work — at the implementation stage it is literally the main thing they control.
+
+**What it trains:** reading a run's tokenomics, attributing cost to stages, the judgment call of "where it was expensive and why".
+
+**The real problem behind the quest:** production bootcamps run an early-stop rule — if a small task has already eaten $10 at the spec stage, it gets stopped and taken apart; without the habit of looking at the price, that rule never fires.
+
+**The task:** using `report/report.json` and the `/cost` data from your sessions, break down the cost of your route: what each task cost; within one spec-driven task — how much went to the spec, the plan, the implementation; compare an average free-form task with a spec-driven one.
+
+**Definition of Done:**
+- [ ] `docs/tokenomics.md`: a table of "task → sessions → tokens → cost estimate"
+- [ ] For one spec-driven task — a breakdown by stage
+- [ ] Three conclusions and one concrete proposal for what you would do cheaper

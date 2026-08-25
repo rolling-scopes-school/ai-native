@@ -1,20 +1,20 @@
-# Side Quests — для особо мотивированных
+# Side Quests — for the highly motivated
 
-Основной маршрут ([PRODUCT.md](../PRODUCT.md)) учит работать *внутри* процесса поставки. Сайд-квесты — про то, из чего этот процесс сделан: знания проекта, автоматические ограждения, второй взгляд до мержа, переиспользуемые активы, автономия, цена работы. Это опциональные задания: они не входят в основной маршрут, не влияют на его оценку и берутся по желанию — но каждое закрывает навык, который на реальных AI-native проектах входит в ежедневную работу.
+The main route ([PRODUCT.md](../PRODUCT.md)) teaches you to work *inside* a delivery process. The side quests are about what that process is *made of*: project knowledge, automatic guardrails, a second pair of eyes before merge, reusable assets, autonomy, and the cost of your work. They are optional: not part of the main route, no effect on its assessment, taken up at will — but each one closes a skill that is part of everyday work on real AI-native projects.
 
-Правила те же, что в [ASSIGNMENT.md](../README.md): ветка `EXT-3xx-slug`, номер в первом сообщении сессии, PR, запись в devlog.
+The rules are the same as in the [test task rules](../README.md): an `EXT-3xx-slug` branch, the number in the session's first message, a PR, a devlog entry.
 
-**У каждого квеста есть пояснение «Зачем» — читайте его до того, как браться.** Если пояснение не убеждает — не берите: сайд-квест без понимания цели превращается в карго-культ.
+**Every quest starts with a "Why" section — read it before taking the quest on.** If the "Why" doesn't convince you, skip the quest: a side quest done without understanding its purpose turns into cargo cult.
 
-## Карта квестов
+## Quest Map
 
-Нумерация — по моменту, когда квест становится доступен. EXT-301 стоит взять как можно раньше: дальше весь маршрут вы едете уже с файлом знаний проекта.
+Quests are numbered by the moment they become available. EXT-301 is worth taking as early as possible: from then on you ride the whole route with a project knowledge file in place.
 
-| Квест | Название | Доступен после | Что тренирует |
+| Quest | Name | Available after | What it trains |
 |---|---|---|---|
-| [EXT-301](EXT-301-project-knowledge-file.md) | Знания проекта для агента | BEVN-003 | context engineering, файл правил проекта |
-| [EXT-302](EXT-302-hook-not-reminder.md) | Hook вместо напоминания | EXT-110 | guardrails: правило как код, а не просьба |
-| [EXT-303](EXT-303-critic-before-merge.md) | Критик до мержа | BEVN-202 или 203 | адверсариальное ревью диффа против спеки |
-| [EXT-304](EXT-304-first-skill.md) | Свой первый skill | двух spec-driven тасок | переиспользуемая оснастка вместо жирного промпта |
-| [EXT-305](EXT-305-autonomous-contract.md) | Автономный прогон по контракту | BEVN-203 | полный контракт задачи, приёмка без вмешательств |
-| [EXT-306](EXT-306-cost-of-your-work.md) | Сколько стоила ваша работа | финального отчёта | токеномика: атрибуция стоимости, где дорого и почему |
+| [EXT-301](EXT-301-project-knowledge-file.md) | Project knowledge for the agent | BEVN-003 | context engineering, a project rules file |
+| [EXT-302](EXT-302-hook-not-reminder.md) | A hook instead of a reminder | EXT-110 | guardrails: a rule as code, not a request |
+| [EXT-303](EXT-303-critic-before-merge.md) | A critic before merge | BEVN-202 or 203 | adversarial review of a diff against a spec |
+| [EXT-304](EXT-304-first-skill.md) | Your first skill | any two spec-driven tasks | reusable tooling instead of a fat prompt |
+| [EXT-305](EXT-305-autonomous-contract.md) | An autonomous run on a contract | BEVN-203 | a full task contract, acceptance without intervention |
+| [EXT-306](EXT-306-cost-of-your-work.md) | What your work cost | the final report | tokenomics: cost attribution, what was expensive and why |

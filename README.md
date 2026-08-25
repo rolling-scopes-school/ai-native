@@ -5,4 +5,4 @@ Materials on software development where AI agents write the code and the enginee
 
 - [Русская версия](ru/README.md) — оригинал / canonical source
 - [English version](en/README.md) — перевод / translation
-- [Тестовое задание / Test task](test-task/README.md) — правила, маршрут тасок, сайд-квесты
+- [Test task / Тестовое задание](test-task/README.md) — rules, task route, side quests (English)

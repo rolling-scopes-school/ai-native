@@ -1,12 +1,17 @@
-# EXT-304 — Свой первый skill (после любых двух spec-driven тасок)
-> Optional side quest · both tracks · не входит в основной маршрут
-> Rules: [ASSIGNMENT.md](../README.md) · Quest map: [side-quests/README.md](README.md)
+# EXT-304 — Your First Skill (after any two spec-driven tasks)
 
-**Зачем:** фабрика отличается от «команды с агентом» тем, что оставляет оснастку: переиспользуемые, версионируемые пакеты «как делать задачи такого класса». Пока вы не оставили ни одного — ваше знание умирает вместе с чатом.
-**Что тренирует:** выделение атомарного повторяемого действия; skill как единица использования и тестирования.
-**Реальный юзкейс:** в боевых фабриках скиллов десятки при считанных агентах (33 скилла на 7 агентов в одном из сильнейших кейсов) — потому что скилл переиспользуется многими агентами, а жирный промпт — никем.
-**Задача:** найдите в своём devlog действие, которое делали минимум дважды (например: «проверить DoD таски по диффу», «обновить swagger-описания эндпоинта», «написать разбор PR»). Оформите его skill'ом (`SKILL.md`: когда применять, шаги, критерий готовности) в `.claude/skills/` и примените на следующей таске.
-**DoD:**
-- [ ] Skill закоммичен и применён минимум один раз (видно в devlog)
-- [ ] Проходит проверку атомарности: его можно проверить в отрыве от других шагов
-- [ ] В devlog — что изменилось по сравнению с «просто попросить агента»
+> Optional side quest · both tracks · not part of the main route
+> Rules: [test task](../README.md) · Quest map: [side-quests/README.md](README.md)
+
+**Why:** what separates a factory from "a team with an agent" is that a factory leaves tooling behind: reusable, versioned packages of "how tasks of this class are done". Until you've left at least one behind, your knowledge dies with the chat.
+
+**What it trains:** extracting an atomic, repeatable action; a skill as a unit of use and of testing.
+
+**Real-world case:** in production factories skills number in the dozens against a handful of agents (33 skills to 7 agents in one of the strongest cases) — because a skill is reused by many agents, while a fat prompt is reused by none.
+
+**The task:** find an action in your devlog that you have done at least twice (for example: "check a task's DoD against the diff", "update an endpoint's swagger descriptions", "write a PR walkthrough"). Package it as a skill (`SKILL.md`: when to apply, the steps, the done criterion) under `.claude/skills/` and apply it on the next task.
+
+**Definition of Done:**
+- [ ] The skill is committed and applied at least once (visible in the devlog)
+- [ ] It passes the atomicity check: it can be verified in isolation from other steps
+- [ ] The devlog notes what changed compared to "just asking the agent"
