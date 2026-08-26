@@ -69,11 +69,13 @@ Beyond the main route there are **[side quests](side-quests/README.md)** — six
 
 ## The Code
 
-The code lives in a separate **private** template repository, `brown-events-pilot` — access is granted after you apply (write in the [chat](https://t.me/+u5HQoDbqaO4yMTI6)). Once you have access:
+The code lives in a separate template repository: **[brown-events-pilot](https://github.com/dzmitry-varabei/brown-events-pilot)**.
 
-1. Click **Use this template** → create **your own private copy**.
-2. Add the reviewer as a collaborator on your copy.
+1. Click **Use this template** → create **your own copy** (private is recommended — your devlog and report will live there).
+2. If your copy is private, add the reviewer as a collaborator.
 3. All your work happens in your copy: issues, branches, PRs, the report.
+
+To take part in the pilot (and for any questions) — write in the [chat](https://t.me/+u5HQoDbqaO4yMTI6).
 
 ## Tools
 
