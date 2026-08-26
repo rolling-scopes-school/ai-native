@@ -3,7 +3,7 @@
 > Setup · both tracks · free-form
 > Rules & route: [README.md](../README.md)
 
-The route you are about to walk lives as markdown files in this program repository. Your **working repository** (your private copy of the code template) needs its own tracker: one GitHub Issue per task, so that every branch and PR can reference the issue it implements — the same "ticket → branch → PR" chain used on real projects.
+The route you are about to walk lives as markdown files in this program repository. Your **working repository** (your copy of the [code template](https://github.com/dzmitry-varabei/brown-events-pilot)) needs its own tracker: one GitHub Issue per task, so that every branch and PR can reference the issue it implements — the same "ticket → branch → PR" chain used on real projects.
 
 Don't click the issues together by hand. This is your first agent task: set up the **GitHub MCP server** for your coding agent, and have the agent create the issues for you. MCP (Model Context Protocol) is how agents get tools beyond the local filesystem — knowing how to connect and use an MCP server is part of the job.
 
