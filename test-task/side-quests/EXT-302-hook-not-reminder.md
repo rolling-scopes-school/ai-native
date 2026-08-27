@@ -1,17 +1,31 @@
-# EXT-302 — A Hook Instead of a Reminder (after EXT-110)
+# EXT-302: A hook instead of a reminder
 
-> Optional side quest · both tracks · not part of the main route
-> Rules: [test task](../README.md) · Quest map: [side-quests/README.md](README.md)
+> Available after EXT-110 | Both tracks | Optional side quest
+>
+> Rules: [test task](../README.md) | Quest map: [README.md](README.md)
 
-**Why:** neither humans nor models follow rules consistently; a rule holds not through discipline but through automation — "make non-compliance impossible". Anything you ask an agent "not to forget" will, sooner or later, be forgotten.
+## Why
 
-**What it trains:** control through impossibility; turning a rule from a prompt into executable code.
+A reminder in a prompt can be missed. A hook can enforce the same rule automatically.
 
-**The real problem behind the quest:** "even the smartest model needs guardrails" is a field law of practitioners; in this very repository you have already seen how reminder-rules end up — `console.log` in production, nine of them.
+## What it trains
 
-**The task:** set up one hook in your agent that catches something you have already been burned by in this project. Examples: block a commit containing `console.log`; auto-run tests after a service file changes; warn on a diff larger than N lines.
+Turning a repeated instruction into an executable project guardrail.
 
-**Definition of Done:**
-- [ ] The hook configuration is committed
-- [ ] The devlog records a case where it actually fired
-- [ ] You wrote down which "reminder in the prompt" it replaced
+## Task
+
+Add one hook for a problem you have already encountered in this project.
+
+Examples include:
+
+- block a commit containing `console.log`
+- run tests after a service file changes
+- warn when a diff exceeds a chosen size
+
+Choose a rule that is useful for this project rather than adding a hook only to complete the quest.
+
+## Definition of done
+
+- [ ] Commit the hook configuration
+- [ ] Record one case in the devlog where the hook fired
+- [ ] Record which prompt reminder or manual check the hook replaced

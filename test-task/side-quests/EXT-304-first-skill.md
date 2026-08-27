@@ -1,17 +1,40 @@
-# EXT-304 — Your First Skill (after any two spec-driven tasks)
+# EXT-304: Your first skill
 
-> Optional side quest · both tracks · not part of the main route
-> Rules: [test task](../README.md) · Quest map: [side-quests/README.md](README.md)
+> Available after any two spec-driven tasks | Both tracks | Optional side quest
+>
+> Rules: [test task](../README.md) | Quest map: [README.md](README.md)
 
-**Why:** what separates a factory from "a team with an agent" is that a factory leaves tooling behind: reusable, versioned packages of "how tasks of this class are done". Until you've left at least one behind, your knowledge dies with the chat.
+## Why
 
-**What it trains:** extracting an atomic, repeatable action; a skill as a unit of use and of testing.
+Repeated work is a good candidate for reusable tooling. A skill captures one repeatable action so it can be applied consistently in later tasks.
 
-**Real-world case:** in production factories skills number in the dozens against a handful of agents (33 skills to 7 agents in one of the strongest cases) — because a skill is reused by many agents, while a fat prompt is reused by none.
+## What it trains
 
-**The task:** find an action in your devlog that you have done at least twice (for example: "check a task's DoD against the diff", "update an endpoint's swagger descriptions", "write a PR walkthrough"). Package it as a skill (`SKILL.md`: when to apply, the steps, the done criterion) under `.claude/skills/` and apply it on the next task.
+Extracting a small repeatable workflow and defining how to verify it.
 
-**Definition of Done:**
-- [ ] The skill is committed and applied at least once (visible in the devlog)
-- [ ] It passes the atomicity check: it can be verified in isolation from other steps
-- [ ] The devlog notes what changed compared to "just asking the agent"
+## Task
+
+Find an action in your devlog that you have performed at least twice.
+
+Examples include:
+
+- check a task's Definition of Done against the diff
+- update Swagger descriptions for an endpoint
+- write a Pull Request walkthrough
+
+Package the action as a skill under `.claude/skills/`.
+
+Its `SKILL.md` should define:
+
+- when to use the skill
+- the steps
+- the completion criterion
+
+Apply the skill on the next task.
+
+## Definition of done
+
+- [ ] Commit the skill
+- [ ] Apply it at least once and record that use in the devlog
+- [ ] Make the skill independently verifiable from other workflow steps
+- [ ] Record what changed compared with asking the agent without the skill

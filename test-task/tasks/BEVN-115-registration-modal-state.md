@@ -1,12 +1,16 @@
-# BEVN-115 — Registration Modal Shows Stale Data After Close
+# BEVN-115: Registration modal shows stale data after close
 
-> Frontend Fix · both tracks · free-form
-> Rules & route: [README.md](../README.md)
+> Frontend fix | Both tracks | Free-form
+>
+> Rules and route: [README.md](../README.md)
 
-When a user opens the registration modal, partially fills in the form, and then closes it, the fields still contain the old data the next time the modal is opened. After a successful registration, reopening the modal shows the success screen instead of a fresh form — making it impossible to start a new registration without refreshing the page.
+The registration modal keeps its state after it closes. Partially entered form data appears when the modal is reopened, and a completed registration leaves the success screen visible on the next open.
 
-**Definition of Done:**
-- [ ] Closing the modal resets all form fields to empty
-- [ ] Closing the modal clears any validation errors and server error messages
-- [ ] After a successful registration, reopening the modal presents a fresh empty form
-- [ ] Multiple open/close cycles do not accumulate state
+Reset the modal whenever it closes so each open starts with a fresh form.
+
+## Definition of done
+
+- [ ] Closing the modal clears all form fields
+- [ ] Closing the modal clears validation errors and server error messages
+- [ ] Reopening the modal after a successful registration shows a fresh empty form
+- [ ] Repeated open and close cycles do not retain or accumulate state

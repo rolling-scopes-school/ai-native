@@ -1,14 +1,19 @@
-# BEVN-203 — Attendee Registration Dashboard
+# BEVN-203: Attendee registration dashboard
 
-> Phase 2 — New Features · both tracks · SPEC-DRIVEN
-> Rules & route: [README.md](../README.md)
+> Phase 2: New features | Both tracks | Spec-driven
+>
+> Rules and route: [README.md](../README.md)
 
-An attendee can view all their conference registrations in one place. The dashboard shows each registration with conference name, dates, status, and a cancel button. Cancellation triggers the same waitlist promotion logic as BEVN-202.
+Add a dashboard where an attendee can view all conference registrations associated with their email. Show the conference name, dates, registration status, and cancellation controls.
 
-**Definition of Done:**
+Cancelling a registration must use the same waitlist promotion behavior introduced in BEVN-202.
+
+## Definition of done
+
 - [ ] `GET /api/attendees/{email}/registrations` returns all registrations with conference context
-- [ ] Dashboard page accessible at `/dashboard` with an email input to look up registrations
-- [ ] Each registration shows conference name, dates, status
-- [ ] Confirmed registrations have a cancel button; cancelled ones are read-only
-- [ ] Cancellation refreshes the list
-- [ ] Empty state shown when no registrations found for the email
+- [ ] `/dashboard` provides an email input for looking up registrations
+- [ ] Each registration shows the conference name, dates, and status
+- [ ] Confirmed registrations have a cancel button
+- [ ] Cancelled registrations are read-only
+- [ ] Cancelling a registration refreshes the list
+- [ ] Show an empty state when no registrations are found for the email

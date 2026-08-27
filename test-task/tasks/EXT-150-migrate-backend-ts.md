@@ -1,21 +1,30 @@
-# EXT-150 — Migrate the Backend to TypeScript (NestJS)
+# EXT-150: Migrate the backend to TypeScript with NestJS
 
-> Phase 1B — Migration · Track B only · SPEC-DRIVEN · replaces Phase 1A
-> Rules & route: [README.md](../README.md)
+> Phase 1B: Migration | Track B only | Spec-driven | Replaces Phase 1A
+>
+> Rules and route: [README.md](../README.md)
 
-The team is consolidating on a TypeScript stack. Reimplement the backend in **TypeScript with NestJS and Prisma** (PostgreSQL stays), preserving the existing API surface so the React frontend keeps working unchanged. This is a *clean* migration: the defects you documented in BEVN-003 must be **fixed in the new backend, not ported**. NestJS maps almost one-to-one onto the ASP.NET Core structure — controllers, services, DI — so use the existing code as the source of truth for behavior, not as a style guide.
+Reimplement the backend in TypeScript with NestJS and Prisma while keeping PostgreSQL. Preserve the existing API contract so the React frontend continues to work without changes.
 
-**Definition of Done:**
-- [ ] Backend reimplemented in TypeScript: NestJS + Prisma, PostgreSQL unchanged
-- [ ] Same API surface: every existing endpoint keeps its path, method and response data — the frontend works against the new backend without changes
-- [ ] Demo data seeding preserved (equivalent of `DataSeeder`)
-- [ ] All endpoints return responses in the same structure; errors are structured JSON with appropriate status codes — never a raw stack trace
+Use the existing backend as the source of truth for behavior. Do not copy its defects into the new implementation. Fix the issues identified in BEVN-003 as part of the migration.
+
+## Definition of done
+
+- [ ] Reimplement the backend with TypeScript, NestJS, and Prisma while keeping PostgreSQL
+- [ ] Preserve every existing endpoint path, HTTP method, and response data so the frontend works without changes
+- [ ] Preserve demo data seeding equivalent to `DataSeeder`
+- [ ] Use one consistent response structure across endpoints
+- [ ] Return structured JSON errors with appropriate HTTP status codes and never expose raw stack traces
 - [ ] `POST` endpoints return `201 Created` with the created resource
-- [ ] Input validated with `class-validator` + `ValidationPipe`; invalid input returns `400 Bad Request` listing which fields failed and why
-- [ ] Multi-step writes are atomic (`$transaction`), with a brief comment explaining what state would be corrupted otherwise
-- [ ] Defects from your BEVN-003 audit are fixed, not ported — the PR description lists each one and how the new code avoids it
-- [ ] Existing backend unit tests ported to the new stack (Jest or Vitest) and passing
-- [ ] API documentation from BEVN-002 survives the migration (e.g. `@nestjs/swagger`) — `/swagger` works on the new backend
-- [ ] No N+1 queries: list endpoints execute a bounded number of queries regardless of record count
-- [ ] The CI workflow from EXT-110 is updated to build and test the new backend
-- [ ] `docker-compose up --build` brings up the app with the new backend; README updated with new run instructions
+- [ ] Validate input with `class-validator` and `ValidationPipe`
+- [ ] Invalid input returns `400 Bad Request` and identifies each failed field and the reason
+- [ ] Make multi-step writes atomic with `$transaction`
+- [ ] Add a short comment to each transactional operation stating which inconsistent state the transaction prevents
+- [ ] Fix the defects identified in BEVN-003, and list each defect in the Pull Request description with how the new backend avoids it
+- [ ] Port the existing backend unit tests to Jest or Vitest and keep them passing
+- [ ] Preserve the BEVN-002 API documentation with a NestJS equivalent such as `@nestjs/swagger`
+- [ ] Keep `/swagger` working
+- [ ] Avoid N+1 queries so list endpoints use a bounded number of queries as record count grows
+- [ ] Update the EXT-110 CI workflow to build and test the new backend
+- [ ] `docker-compose up --build` starts the application with the new backend
+- [ ] Update the README with the new run instructions

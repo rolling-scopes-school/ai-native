@@ -1,17 +1,33 @@
-# EXT-303 — A Critic Before Merge (on BEVN-202 or BEVN-203)
+# EXT-303: A critic before merge
 
-> Optional side quest · both tracks · not part of the main route
-> Rules: [test task](../README.md) · Quest map: [side-quests/README.md](README.md)
+> Available on BEVN-202 or BEVN-203 | Both tracks | Optional side quest
+>
+> Rules: [test task](../README.md) | Quest map: [README.md](README.md)
 
-**Why:** in production pipelines a critic stands between the plan and the merge — an agent whose only job is to find divergences from the spec. It's a second pair of eyes *before* the human; without it, the author's self-check is the only line of defense, and an author is always kind to their own code.
+## Why
 
-**What it trains:** adversarial review, reading a diff against a spec, the discipline of "don't praise — hunt".
+A fresh review can find differences between the specification and implementation that the author missed.
 
-**Real-world case:** a mature factory keeps critics between every pair of steps (plan → critic → implementation → critic) — they are what takes the load off the human gate.
+## What it trains
 
-**The task:** before merging the chosen task, start a *fresh* agent session, give it only the spec and the diff, with a prompt like: "find divergences from the spec, missed edge cases, and defects; do not praise; answer as a list". Then work through every finding: accept it (and fix) or reject it (and say why).
+Reviewing a diff against a specification and resolving findings before merge.
 
-**Definition of Done:**
-- [ ] The critic's report is a file in the PR (`docs/critic-<task>.md`)
-- [ ] At least two findings are worked through with a verdict and a reason
-- [ ] The commit history shows the critic ran before the merge
+## Task
+
+Before merging BEVN-202 or BEVN-203, start a fresh agent session. Give the agent only the specification and the diff.
+
+Ask it to find:
+
+- differences from the specification
+- missed edge cases
+- defects
+
+Tell it not to praise the implementation and to return only findings.
+
+Review every finding. Either fix it or reject it with a reason.
+
+## Definition of done
+
+- [ ] Save the critic report as `docs/critic-<task>.md` in the Pull Request
+- [ ] Resolve at least two findings with a verdict and reason
+- [ ] The commit history shows that the critic review happened before merge

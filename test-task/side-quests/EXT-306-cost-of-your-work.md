@@ -1,17 +1,32 @@
-# EXT-306 — What Your Work Cost (after the final report)
+# EXT-306: What your work cost
 
-> Optional side quest · both tracks · not part of the main route
-> Rules: [test task](../README.md) · Quest map: [side-quests/README.md](README.md)
+> Available after the final report | Both tracks | Optional side quest
+>
+> Rules: [test task](../README.md) | Quest map: [README.md](README.md)
 
-**Why:** on real AI-native projects inference is a cost line on the order of 5% of revenue, and a task of average complexity costs tens of dollars; an operator must see the price of their work — at the implementation stage it is literally the main thing they control.
+## Why
 
-**What it trains:** reading a run's tokenomics, attributing cost to stages, the judgment call of "where it was expensive and why".
+Agent usage has a measurable token and inference cost. Reviewing that cost helps identify expensive parts of the workflow and where the same work might be done with less model usage.
 
-**The real problem behind the quest:** production bootcamps run an early-stop rule — if a small task has already eaten $10 at the spec stage, it gets stopped and taken apart; without the habit of looking at the price, that rule never fires.
+## What it trains
 
-**The task:** using `report/report.json` and the `/cost` data from your sessions, break down the cost of your route: what each task cost; within one spec-driven task — how much went to the spec, the plan, the implementation; compare an average free-form task with a spec-driven one.
+Reading usage data, attributing cost to tasks and stages, and comparing different development workflows.
 
-**Definition of Done:**
-- [ ] `docs/tokenomics.md`: a table of "task → sessions → tokens → cost estimate"
-- [ ] For one spec-driven task — a breakdown by stage
-- [ ] Three conclusions and one concrete proposal for what you would do cheaper
+## Task
+
+Use `report/report.json` and the `/cost` data from your sessions to analyze the cost of your route.
+
+Calculate:
+
+- the cost of each task
+- the cost of specification, planning, and implementation for one spec-driven task
+- the difference between an average free-form task and a spec-driven task
+
+Then identify where the most expensive work occurred and why.
+
+## Definition of done
+
+- [ ] Create `docs/tokenomics.md` with a table of task, sessions, tokens, and estimated cost
+- [ ] Break down one spec-driven task by stage
+- [ ] Write three conclusions based on the data
+- [ ] Propose one concrete way to reduce cost

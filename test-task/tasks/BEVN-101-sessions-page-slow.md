@@ -1,13 +1,17 @@
-# BEVN-101 — Sessions Page Is Slow
+# BEVN-101: Sessions page is slow
 
-> Optional — SQL Performance · both tracks · free-form · Track B: do it BEFORE EXT-150
-> Rules & route: [README.md](../README.md)
+> Optional | SQL performance | Both tracks | Free-form
+>
+> Track B: complete this task before EXT-150
+>
+> Rules and route: [README.md](../README.md)
 
-Users are complaining that opening a conference page takes noticeably longer when the conference has many sessions. No errors, the data loads — it's just slow. Find out why and fix it. The data returned must stay the same.
+Opening a conference becomes slower as the number of sessions grows. The data still loads and no error is reported. Find the cause and fix it without changing the returned data.
 
-**Definition of Done:**
-- [ ] Root cause identified and documented in a code comment at the fix location
-- [ ] Fix applied to all affected service methods
-- [ ] The number of SQL queries executed for the sessions endpoint is bounded regardless of session count
-- [ ] No existing endpoint returns different data than before
-- [ ] PR description explains what was happening and what changed
+## Definition of done
+
+- [ ] Identify the root cause and document it in a code comment at the fix location
+- [ ] Apply the fix to every affected service method
+- [ ] Keep the number of SQL queries for the sessions endpoint bounded as the session count grows
+- [ ] Preserve the data returned by all existing endpoints
+- [ ] Explain the cause and the fix in the Pull Request description

@@ -1,29 +1,55 @@
-# CodeMie Analytics for Students
-> Written in tandem: Dzmitry Varabei and Claude Fable, critiqued by GPT Sol.
+# CodeMie Analytics for students
+
+> Written in tandem by Dzmitry Varabei and Claude Fable. Critiqued by GPT Sol.
 > August 24, 2026.
 
-How to build a report on your work with AI agents in one command — and send the reviewer only what belongs to the test task.
+Use CodeMie Analytics to generate a report of your work with console AI agents. Before submitting it, check that the report contains only sessions from the test task.
 
-## What This Tool Is
+## What the tool does
 
-[CodeMie CLI](https://github.com/codemie-ai/codemie-code) (`@codemieai/code`) is an open-source utility (Apache-2.0) from the EPAM AI/Run team. It's a fairly large toolbox: a single launcher for different AI agents, corporate and external model access, SSO and proxy, agent installation and configuration, analytics, and more. Some capabilities target corporate use and may require an EPAM account or infrastructure. You won't need any of that — out of everything CodeMie CLI can do, we only need the analytics, available through the `codemie analytics` command.
+[CodeMie CLI](https://github.com/codemie-ai/codemie-code), published as `@codemieai/code`, is an open-source Apache 2.0 tool from the EPAM AI/Run team.
 
-**The `codemie analytics` command** reads the local session logs that your AI agents already write to disk (Claude Code — to `~/.claude`; likewise Codex, Gemini CLI, Copilot CLI, Pi) and assembles them into a readable report: how many sessions, how many turns and tool calls, which files changed, how many tokens were spent. You keep working in your usual tool — CodeMie doesn't intercept anything and doesn't sit "between" you and the agent.
+CodeMie CLI supports several workflows, but this task only uses:
 
-> **On privacy.** The `codemie analytics` report is just two files (`.html` and `.json`) created **locally in the current folder**. The command sends nothing anywhere: not to EPAM, not to CodeMie servers, not to the reviewer. Only you see the report, and only the person you choose to send it to. Before sending, open the `.html` in a browser and check what's inside.
->
-> What gets into the report: session metrics, project folder paths, and **the text of your first message in each session**. Full dialogues with the agent do not.
+```text
+codemie analytics
+```
 
-## What You'll Need
+The command reads session logs that supported console agents already store locally. This includes Claude Code, Codex CLI, Gemini CLI, Copilot CLI, and Pi.
 
-- **Node.js version 20 or newer**.
-- **The console AI agent** you work in: Claude Code, Codex CLI, Gemini CLI, Copilot CLI, or Pi. *Cursor, web chats (claude.ai, ChatGPT), and IDE plugins don't make it into the report — the task must be done in a console agent.*
+It generates an HTML report and a JSON file with information such as:
 
-Installing CodeMie globally is not necessary — every command below runs through `npx` and downloads the utility on the fly.
+- sessions;
+- turns and tool calls;
+- changed files;
+- token usage;
+- branches;
+- the first message of each session.
 
-## See the Analytics for All Your Projects
+CodeMie does not need to sit between you and your agent. Keep using your console agent normally.
 
-This is an optional "for yourself" step — to see what the report looks like and get the stats of all your agent work for a week:
+### Privacy
+
+The report files are created locally in the current directory. Running `codemie analytics` does not send the report to the reviewer.
+
+Before submitting a report, open the HTML file and inspect its contents.
+
+The report includes session metadata, project paths, and the first message of each session. It does not include full conversations with the agent or file contents.
+
+## Requirements
+
+You need:
+
+- Node.js 20 or newer;
+- Claude Code, Codex CLI, Gemini CLI, Copilot CLI, or Pi.
+
+Cursor, web chats such as ChatGPT or claude.ai, and IDE plugins are not included in the report. Complete the test task with a supported console agent.
+
+You do not need to install CodeMie globally. The commands below use `npx`.
+
+## Inspect analytics for all projects
+
+This step is optional. You can generate a report covering all supported agent sessions from the last seven days:
 
 ```bash
 npx -y -p @codemieai/code codemie analytics --report \
@@ -31,46 +57,118 @@ npx -y -p @codemieai/code codemie analytics --report \
   --report-format both --report-output ./my-report.html
 ```
 
-`my-report.html` (a dashboard — open it in a browser) and `my-report.json` (the same data for machine processing) appear in the current folder. The `--include-external` flag includes all native agent sessions on the machine; `--last 7d` is a 7-day window (you can use `--last 24h`, or exact dates via `--from 2026-08-20 --to 2026-08-24`).
+The command creates:
 
-*Don't send this full report to anyone — it contains all your projects and personal sessions.*
+```text
+my-report.html
+my-report.json
+```
 
-## Build the Report for the Test Task
+Open the HTML file in a browser to inspect the report. The JSON file contains the same report data in a machine-readable format.
 
-1. **Work in a dedicated folder** — your working repository copy — and only in it.
+`--include-external` includes native agent sessions found on the machine.
 
-2. **Do the task with your agent**, launching it from that folder — e.g. `claude`, `codex`, or `gemini`. Work as you normally would: the number of attempts and clarifications is not penalized; the overall approach is what's assessed.
+`--last 7d` limits the report to the previous seven days. Other supported ranges include:
 
-3. **When done, build the report for that folder only** (you can run it from the folder itself). The report must cover **the whole period of the task** — usually 14–20 days, hence the 30-day window in the command:
+```text
+--last 24h
+--from 2026-08-20 --to 2026-08-24
+```
+
+Do not submit this report. It may contain sessions from unrelated projects.
+
+## Build the test-task report
+
+1. Work in a dedicated repository folder.
+
+2. Launch your console agent from that folder and complete the tasks normally.
+
+3. After finishing the test task, generate a report for the repository:
 
    ```bash
    npx -y -p @codemieai/code codemie analytics --report \
      --last 30d --include-external \
      --project brown-events-pilot \
-     --report-format both --report-output ./report.html
+     --report-format both --report-output ./report/report.html
    ```
 
-   *`--project brown-events-pilot` filters by folder name: only sessions from it get into the report; the rest of your projects and personal sessions stay out. If your folder is named differently — substitute your name. If the task took longer than a month — give exact dates: `--from ... --to ...`.*
+   `--project brown-events-pilot` filters sessions by project folder name. If your repository folder has a different name, replace `brown-events-pilot` with that name.
 
-4. **Check and send.** Open `report.html` in a browser and make sure it contains only the test-task sessions. Then deliver both files — `report.json` and `report.html` — the way the task rules ask (committed to your repository).
+   The 30-day window covers the expected 14 to 20 days of work. If your work spans more than 30 days, use exact dates:
 
-## Important! The Task Number Goes into the Branch, the Commits, and the Sessions
+   ```text
+   --from ... --to ...
+   ```
 
-Every activity must be tied to its task number — that's how the reviewer traces the whole chain "ticket → agent sessions → commits → PR". In commits and PRs this is routine; here is how the number gets **into the sessions**: the analytics report records two fields per session — the git branch and the text of your first message. The number is threaded through them:
+4. Open `report/report.html` and verify that it contains only sessions from the test task.
 
-1. **Branch = task number.** Before starting a task, create a branch with its number: `git checkout -b BEVN-104-standardize-responses`. Every agent session on that branch automatically gets the number in the report's `branch` field — the most reliable mechanism, impossible to forget.
-2. **Start the session's first message with the number:** "*BEVN-104: standardize the API error responses...*". The first message becomes the session's title — the session list reads as "which session — for which task". This is the backup for sessions where no branch exists yet (discussion, planning on `main`).
-3. **Commits and PRs** — as the rules ask: the number in the commit message (`feat: add waitlist (BEVN-202)`) and in the PR title.
+5. Submit both generated files according to the test-task rules:
 
-Bonus: the report can be sliced per task by branch — `codemie analytics --report --branch BEVN-202 ...` shows only that task's sessions.
+   ```text
+   report/report.html
+   report/report.json
+   ```
 
-## What the Reviewer Will See
+## Keep sessions traceable to tasks
 
-| In the report | Not in the report |
-|---|---|
-| Number of sessions, turns and tool calls, success share | Your full dialogues with the agent |
-| Each session's first message — how you framed the task | The contents of your files |
-| Which files changed, lines added/removed, languages | Your keys, tokens, and passwords |
-| Models, tokens, and a cost estimate | Anything from other folders — when `--project` is used |
+The reviewer should be able to follow this chain:
 
-The metrics are not there to "catch" you on the number of attempts, but to see *how* you work with the agent: how you frame the task, how you iterate, whether you drive it to a result. This is assessed together with the solution itself.
+```text
+ticket
+→ branch
+→ agent sessions
+→ commits
+→ Pull Request
+```
+
+Use the task ID in each part of that chain.
+
+### Branch
+
+Create a branch that starts with the task ID:
+
+```bash
+git checkout -b BEVN-104-standardize-responses
+```
+
+Agent sessions started on that branch will record it in the report.
+
+### First message
+
+Start the first message of every agent session with the task ID:
+
+```text
+BEVN-104: standardize the API error responses...
+```
+
+The report records the first message of each session. Together with the branch, it gives the reviewer a second way to identify the task.
+
+### Commits and Pull Requests
+
+Include the task ID in related commit messages:
+
+```text
+feat: add waitlist (BEVN-202)
+```
+
+Include it in the Pull Request title as required by the test-task rules.
+
+### Filter by branch
+
+You can also generate a report for one task by filtering on its branch:
+
+```text
+codemie analytics --report --branch BEVN-202 ...
+```
+
+## What the reviewer sees
+
+| In the report                             | Not in the report                                             |
+| ----------------------------------------- | ------------------------------------------------------------- |
+| Number of sessions, turns, and tool calls | Full conversations with the agent                             |
+| First message of each session             | File contents                                                 |
+| Changed files and lines added or removed  | API keys, access tokens, and passwords                        |
+| Languages used                            | Sessions from other folders when `--project` filters them out |
+| Models, token usage, and estimated cost   |                                                               |
+
+The reviewer uses this information together with your implementation and devlog to understand how you worked with the agent. The number of sessions or attempts is not graded by itself.
