@@ -14,7 +14,7 @@ A junior developer should understand these areas and be able to take part in the
 
 * **Context engineering** — understand that the quality of the agent's output depends on what the agent has read before working. Create and maintain project knowledge files (CLAUDE.md / AGENTS.md): how to run and test the project, the conventions, the architecture in a few lines, known traps. Keep these files updated as the project changes.
 
-* **Spec-driven development** — for non-trivial tasks, work in steps — task → spec → plan → implementation — instead of one prompt. Write acceptance criteria before implementation starts, and accept the result strictly against them.
+* **Spec-driven development** — work in steps: task → spec → plan → implementation. On production projects almost every task follows this or a similar protocol; doing a task in one prompt is usually not an option, because quality is achieved by reviewing the intermediate steps (the spec, the plan) — not only the final code. Write acceptance criteria before implementation starts, and accept the result strictly against them.
 
 * **Reviewing and controlling AI-generated code** — review every AI-produced diff as if it came from an unfamiliar author. Before merge, run a critic pass: a fresh agent session that gets only the spec and the diff, and is asked to find differences from the spec, not to praise the code. Give every finding an explicit verdict: accept and fix, or reject with a reason.
 
@@ -24,6 +24,6 @@ A junior developer should understand these areas and be able to take part in the
 
 * **Autonomous runs** — before letting an agent work without supervision, write a complete task contract: objective, inputs, tools, constraints, Definition of Done, validation, budget, failure policy. Do not correct the agent mid-run. Accept or reject the result against the written DoD, not against impressions.
 
-* **Cost awareness (tokenomics)** — see the price of AI work: read token and cost reports, and attribute cost to stages (spec, plan, implementation). Compare approaches by cost. Notice when a task is costing too much, so it can be stopped and re-scoped early.
+* **Cost awareness (tokenomics)** — see the price of AI work: read token and cost reports, and attribute cost to stages (spec, plan, implementation). Know that on production projects the cost of a task is estimated already at the spec / plan / task level, before implementation starts. Compare approaches by cost. Notice when a task is costing too much, so it can be stopped and re-scoped early.
 
 A junior developer is **not expected to design agent platforms, orchestration pipelines, or the AI factory itself from scratch**. They should be able to work inside the agentic workflow the team has already set up.

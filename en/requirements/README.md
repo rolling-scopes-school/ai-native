@@ -8,3 +8,4 @@ All requirements reflect the projects where these positions open: legacy systems
 
 - [SDLC](./sdlc.md) — the development lifecycle: from a requirement to production
 - [AI SDLC](./ai-sdlc.md) — how AI is built into the development cycle: the agent, context, specs, control, cost
+- [project-dotnet.md](./project-dotnet.md) — Insurance Platform (.NET / Vue): project-specific candidate requirements
