@@ -30,6 +30,8 @@ flowchart LR
     PR -. review comments .-> I
 ```
 
+Every dotted edge starts at a **gate**: a point where someone gives an explicit verdict — forward, or back. *Gate* is the word you will hear daily on a factory project. (And on a real project the returns can go deeper than the diagram shows: even the spec is reopenable when implementation reveals it was wrong — the acceptance criteria have an owner, not a freeze date.)
+
 Both of you are present on every step, and on every step the jobs are different:
 
 | Conveyor step | What the coding agent does | What the operator does |
@@ -37,11 +39,13 @@ Both of you are present on every step, and on every step the jobs are different:
 | **ticket** | explores the codebase on request | understands the requirement, finds the parts of the system it touches, asks questions where it is unclear |
 | **spec** | drafts the spec from your conversation | owns the acceptance criteria; resolves the contentious cases in writing, before any code |
 | **plan** | writes the step-by-step plan | reads it end to end and checks it against the spec |
-| **critic** | a *fresh* agent session performs the adversarial pass | commissions it, hands it only the spec and the plan, and gives every finding an explicit verdict |
+| **critic** | a *different*, fresh agent session — not your coding agent — performs the adversarial pass | commissions it, hands it only the spec and the plan, and gives every finding an explicit verdict |
 | **implementation** | writes the code, runs commands, fixes what breaks | watches context and cost, stops early, intervenes by hand when needed |
 | **checks** | runs tests and lint, chases failures | knows what the tests actually run and what really blocks the merge |
-| **evidence** | puts the ticket number where it is told to | enforces the discipline: ticket number in the branch, proofs in the repository |
+| **evidence** | puts the ticket number where it is told to | enforces traceability: ticket number in the branch; spec, plan, journal, and the record that the checks really ran — committed to the repository |
 | **PR** | drafts the description, summarizes the change | reads the diff, validates the result independently of the agent's summary |
+
+One naming note: the *critic* is a pattern, not a single step — a fresh session with a narrow brief and an explicit verdict on every finding. In production it runs at least twice: on the plan, as here, and again on the completed diff before merge — that second pass is exactly [EXT-303](../side-quests/EXT-303-critic-before-merge.md), and on a real factory a review gate like that blocks the path to the PR. This task exercises the plan-level pass.
 
 **Tooling:** unchanged — the usual spec-driven setup (in Claude Code, the superpowers plugin, whose brainstorming → spec → plan → implementation flow drives part of this conveyor; in another agent, the equivalent flow with `spec.md` and `plan.md` committed). Notice, though, that the tooling orchestrates only part of the map: nobody runs the critic, keeps the evidence, or validates the PR for you. Seeing where the automation ends and the operator begins is part of the exercise.
 
@@ -58,6 +62,6 @@ Both of you are present on every step, and on every step the jobs are different:
 - [ ] The *ticket* entry records at least one question you asked about the requirements (or names the ambiguity you looked for and didn't find)
 - [ ] The *plan* or *critic* entry records at least one silent decision the agent made that the ticket didn't ask for (there is always at least one) — with your explicit verdict on it
 - [ ] The *PR* entry records how you validated the result yourself, without relying on the agent's summary
-- [ ] A closing debrief: which step turned out to be the most work for you as operator — and is that where you expected it?
+- [ ] A closing debrief in the journal: which step turned out to be the most work for you as operator — and is that where you expected it?
 
 **What stays in whose head.** When this task merges, the agent's head — its context window — is compacted and discarded. Everything it "learned" about waitlists, promotions, and your codebase: gone. Tomorrow's session arrives as a bright, confident stranger who has never heard of BEVN-202. (This is not a bug to fix but a fact to design around — it is why project knowledge files and skills exist; see [EXT-301](../side-quests/EXT-301-project-knowledge-file.md) and [EXT-304](../side-quests/EXT-304-first-skill.md).) What stays in *your* head is different: the domain, the map of the system, the scar from the silent decision you almost let through. Of the two of you, only one accumulates — and the journal is how you check that it's you.
