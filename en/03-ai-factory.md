@@ -102,7 +102,7 @@ It's naive to think a factory produces only software. A good factory has **two o
 2. **Reusable artifacts** — new and improved skills, rules, specs, recorded decisions. The
    things that make the *next* task cheaper and faster.
 
-At a distance the second output matters more than the first — under one condition: **future
+In the long run the second output matters more than the first — under one condition: **future
 tasks resemble past ones** (otherwise the library doesn't transfer). For a team living in one
 product or one class of tasks, the condition holds almost always — and then the arithmetic is
 simple: the software is sold once, while every skill works for all the tasks that follow. A
@@ -117,7 +117,7 @@ certificates, but working artifacts.
 ## "I can do all of this in one Claude Code session. Why a factory?"
 
 You can. And for a small task that's exactly what you should do (see "When you don't need a
-factory" below). The difference shows at a distance — not in *what* is done, but in *what it
+factory" below). The difference shows over time — not in *what* is done, but in *what it
 rests on*:
 
 - **In a session, the process rests on your memory.** The spec, the tests before commit, the
@@ -138,8 +138,8 @@ is systematic.
 ## What a factory is NOT
 
 - **Not an automaton without people.** Fully autonomous delivery is sometimes called a "dark
-  factory" (by analogy with plants where you can switch off the lights). As far as we know, in
-  earnest this works only where the cost of a mistake is small. In real development a human
+  factory" (by analogy with plants where you can switch off the lights). As far as we know, this
+  really works only where the cost of a mistake is small. In real development a human
   approves the key steps.
 - **Not a box that gets "installed".** Setting up the folder structure is an hour of work. What
   makes it a factory is content grown for the specific project, and a team that knows how to
@@ -153,7 +153,7 @@ is systematic.
 The rule is simple:
 
 ```
-large / repeatable task, unfamiliar code      → the factory earns its keep
+large / repeatable task, unfamiliar code      → the factory is worth it
 small task / you know exactly what to do      → your hands, or one agent with no process
 ```
 
@@ -165,8 +165,9 @@ process is as much a skill as knowing how to use it.
 
 One cook with a good knife (an engineer with an agent) can prepare a dish. A restaurant with a
 hundred tables is not "a very fast cook" — it's a **kitchen**: stations with narrow jobs
-(skills), recipe cards (specs), a sous-chef who tastes before serving (the critic), the chef at
-the pass (the human at the gate) — and the main asset: **a recipe book that keeps growing**. A
+(skills), recipe cards (specs), a sous-chef who tastes every dish before it goes out (the
+critic), the head chef who gives the final approval (the human at the gate) — and the main
+asset: **a recipe book that keeps growing**. A
 cook leaves — the kitchen keeps cooking, because the knowledge is in the recipe cards, not in
 someone's head.
 
@@ -176,7 +177,7 @@ someone's head.
    consistent with how a factory works, and what contradicts it? Which two questions would you
    ask the seller?
 2. Team A closed 120 tickets with agents in a quarter; its skill library is empty. Team B
-   closed 80, but has 25 road-tested skills and project rules. Who is in the better position,
+   closed 80, but has 25 proven skills and project rules. Who is in the better position,
    and under what condition would your answer flip?
 3. A team lead proposes removing the human gate on PRs: "the critic agent checks everything
    anyway." What distinguishes a critic from a gate, and what exactly would the team lose?

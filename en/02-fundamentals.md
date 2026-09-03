@@ -34,7 +34,7 @@ prompt          ~ kilobytes
 What an LLM can **not** do on its own:
 
 * **execute** a tool call — it only says "call this"; there is nobody to press the button;
-* **remember** between runs — every call starts from a blank slate;
+* **remember** between runs — every call starts from scratch;
 * **act** in the outside world — read files, run tests, make commits, reach the network.
 
 The image: **a consultant on the phone**. Knows a great deal and will dictate what to do — but won't press a single button. And once the call ends, the conversation is forgotten: on the next call you'll have to retell it.
@@ -101,7 +101,7 @@ Excess context is harmful too: noise, money, and an extra chance the model pays 
 
 The physical limit is the **context window**: how many **tokens** — small fragments of text — the model takes into account within a single call. Tokens are also the unit in which the cost of the model's work is calculated; the economics gets its own doc in this series.
 
-That's why context is **managed**, not dumped in wholesale.
+That's why context is **managed**, not dumped in all at once.
 
 **What's missing:** assembling the right context for every task by hand is expensive and unrepeatable. You want to save and reuse "how we do tasks of this type."
 
@@ -145,7 +145,7 @@ A practical smell (a warning sign — like a code smell): agents multiply, but t
 
 ## Concept 6. Spec — a written definition of "what must be done"
 
-A **specification (spec)** is a written document: what we're doing, what the constraints are, what counts as done. A spec can describe a specific task, an agent — that very "role" from concept 3, taken all the way to a file — or an entire process.
+A **specification (spec)** is a written document: what we're doing, what the constraints are, what counts as done. A spec can describe a specific task, an agent — that very "role" from concept 3, finally written down as a file — or an entire process.
 
 > **A spec turns intent into an explicit instruction that an agent can use and a team can verify, discuss, and hand over.**
 
@@ -237,7 +237,7 @@ Imagine we've hired a very smart new employee.
 
 A good AI team is not "we have a smart model": access to strong models is available to everyone today, and by itself it stops being an advantage. A good AI team is:
 
-> **"We have the smart model's work well organized: specs are written, skills are accumulated, context is curated, tools are set up, and the results are preserved."**
+> **"We have the smart model's work well organized: specs are written, skills are accumulated, context is carefully selected, tools are set up, and the results are preserved."**
 
 That is what an AI factory is gradually built from.
 
