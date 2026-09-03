@@ -57,3 +57,5 @@ So below I want to focus on the basic concepts everything else is built on.
 As always, I'll be glad to hear questions and comments.
 
 1) [AI writes the code. So what does the engineer do now?](01-economics-and-engineer-role.md)
+2) [What an "agent" is made of: six fundamental concepts](02-fundamentals.md)
+3) [The AI factory: what it really is](03-ai-factory.md)
