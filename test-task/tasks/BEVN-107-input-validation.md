@@ -1,12 +1,14 @@
-# BEVN-107 — Add Input Validation
+# BEVN-107: Add input validation
 
-> Phase 1A — Stabilize · Track A only · free-form
-> Rules & route: [README.md](../README.md)
+> Phase 1A: Stabilize | Track A only | Free-form
+>
+> Rules and route: [README.md](../README.md)
 
-The API accepts any payload without validation. Submitting a registration with an empty email, creating a conference with no title, or sending a completely empty JSON body all either silently succeed or produce an unhelpful 500. Add proper input validation so the API rejects invalid input with a clear error message before it reaches the service layer.
+The API currently accepts invalid payloads or fails with an unhelpful `500` response. Add input validation so invalid data is rejected before it reaches the service layer and the caller receives a clear error response.
 
-**Definition of Done:**
-- [ ] Relevant model properties annotated with `[Required]`, `[MaxLength]`, `[EmailAddress]` where appropriate
-- [ ] Controllers annotated with `[ApiController]` so `ModelState` is checked automatically
-- [ ] Invalid input returns `400 Bad Request` with a structured message listing which fields failed and why
-- [ ] At least two unit or integration tests covering validation failure scenarios
+## Definition of done
+
+- [ ] Use `[Required]`, `[MaxLength]`, and `[EmailAddress]` on relevant model properties where appropriate
+- [ ] Add `[ApiController]` to controllers so ASP.NET Core checks `ModelState` automatically
+- [ ] Invalid input returns `400 Bad Request` with a structured message that identifies each failed field and the reason
+- [ ] Add at least two unit or integration tests for validation failures

@@ -1,125 +1,257 @@
-# Test Task: BrownEvents
+# Test task: BrownEvents
 
 > Читать по-русски: [README.ru.md](README.ru.md)
 
-In front of you is a brownfield: a working conference-management application that nobody has maintained for two years. Your job is to understand it, stabilize it, and build two features on top of it — working in tandem with a console AI agent. What's assessed is not only the result but *how* you work with the agent — which is why the task has traceability rules and a final report.
+BrownEvents is a conference management application that has not been maintained for two years. It already supports conference creation, session listing, and attendee registration.
 
-**Deadline: roughly 14–20 days** from the moment you get repository access. That's a guideline, not a cutoff — taking longer is fine, just tell the reviewer.
+Your task is to understand the existing system, stabilize it, and implement two features with the help of a console AI agent. The review covers both the finished work and your development process, so the task includes traceability rules, a development log, and a final analytics report.
 
-## What You're Working With
+## Expected duration
 
-BrownEvents is a conference management application built two years ago by a team that has since moved on. The app works — conferences can be created, sessions are listed, attendees can register. The codebase, however, has not been maintained. Your job is to explore it, understand it, and improve it.
+Plan for roughly 14 to 20 days from the day you receive repository access.
 
-The stack is **ASP.NET Core 6 + EF Core 6 + React + Vite + PostgreSQL**. Run `docker-compose up` to get a working environment before starting any task.
+This is a guideline, not a hard deadline. If you need more time, tell the reviewer.
 
-| Entity | Key Fields |
-|--------|-----------|
-| **Conference** | Id, Title, Description, Location, StartDate, EndDate, Status |
-| **Session** | Id, Title, Description, StartTime, EndTime, Capacity, ConferenceId, SpeakerId, RoomId |
-| **Speaker** | Id, FirstName, LastName, Bio, Email |
-| **Room** | Id, Name, Capacity, Location |
-| **Attendee** | Id, FirstName, LastName, Email |
-| **Registration** | Id, ConferenceId, AttendeeId, RegisteredAt, Status |
+## Project
 
-## The Route
+The stack is:
 
-You work **individually**, tasks strictly in order — each one builds on the previous, so don't skip ahead. There are **two tracks**; choose by the backend stack you actually know — you must be able to *verify* the agent's output, not just apply it. The choice is recorded in your first task: EXT-100's PR states the track and why.
+- ASP.NET Core 6
+- EF Core 6
+- React
+- Vite
+- PostgreSQL
 
-**Track A — .NET.** Stabilize the existing backend, then build features on it.
+Start the application with:
 
-| # | Task | Theme | Process |
-|---|------|-------|---------|
-| 1 | [EXT-100](tasks/EXT-100-import-issues-mcp.md) | Import the route as GitHub Issues (MCP) | free-form |
-| 2 | [BEVN-001](tasks/BEVN-001-codebase-mapping.md) | Codebase mapping | free-form |
-| 3 | [BEVN-002](tasks/BEVN-002-api-documentation.md) | API documentation | free-form |
-| 4 | [BEVN-003](tasks/BEVN-003-tech-debt-audit.md) | Technical debt audit | free-form |
-| 5 | [EXT-110](tasks/EXT-110-revive-ci.md) | Revive CI on GitHub Actions | free-form |
-| 6 | [BEVN-104](tasks/BEVN-104-standardize-api-responses.md) | Standardize API responses and errors | free-form |
-| 7 | [BEVN-107](tasks/BEVN-107-input-validation.md) | Add input validation | free-form |
-| 8 | [BEVN-109](tasks/BEVN-109-transaction-boundaries.md) | Fix transaction boundaries | free-form |
-| — | [BEVN-101](tasks/BEVN-101-sessions-page-slow.md) | *Optional:* Sessions page is slow (N+1) | free-form |
-| 9 | [BEVN-115](tasks/BEVN-115-registration-modal-state.md) | Registration modal stale state | free-form |
-| 10 | [BEVN-202](tasks/BEVN-202-session-waitlist.md) | Session Waitlist | **spec-driven (superpowers)** |
-| 11 | [BEVN-203](tasks/BEVN-203-registration-dashboard.md) | Attendee Registration Dashboard | **spec-driven (superpowers)** |
-| 12 | [BEVN-205](tasks/BEVN-205-e2e-suite.md) | End-to-end test suite (Playwright) | **spec-driven (superpowers)** |
+```bash
+docker-compose up
+```
 
-**Track B — TypeScript.** Same discovery and CI work, then migrate the backend to TypeScript instead of stabilizing the .NET one — fixing its known defects in the process — and build the same features on the migrated backend.
+Make sure the environment works before starting the tasks.
 
-| # | Task | Theme | Process |
-|---|------|-------|---------|
-| 1 | [EXT-100](tasks/EXT-100-import-issues-mcp.md) | Import the route as GitHub Issues (MCP) | free-form |
-| 2 | [BEVN-001](tasks/BEVN-001-codebase-mapping.md) | Codebase mapping | free-form |
-| 3 | [BEVN-002](tasks/BEVN-002-api-documentation.md) | API documentation | free-form |
-| 4 | [BEVN-003](tasks/BEVN-003-tech-debt-audit.md) | Technical debt audit | free-form |
-| 5 | [EXT-110](tasks/EXT-110-revive-ci.md) | Revive CI on GitHub Actions | free-form |
-| — | [BEVN-101](tasks/BEVN-101-sessions-page-slow.md) | *Optional:* Sessions page is slow (N+1) — do it **before** the migration | free-form |
-| 6 | [EXT-150](tasks/EXT-150-migrate-backend-ts.md) | Migrate backend to TypeScript (NestJS) | **spec-driven (superpowers)** |
-| 7 | [BEVN-115](tasks/BEVN-115-registration-modal-state.md) | Registration modal stale state | free-form |
-| 8 | [BEVN-202](tasks/BEVN-202-session-waitlist.md) | Session Waitlist | **spec-driven (superpowers)** |
-| 9 | [BEVN-203](tasks/BEVN-203-registration-dashboard.md) | Attendee Registration Dashboard | **spec-driven (superpowers)** |
-| 10 | [BEVN-205](tasks/BEVN-205-e2e-suite.md) | End-to-end test suite (Playwright) | **spec-driven (superpowers)** |
+### Domain model
 
-Both routes are one vertical slice: set up your tracker (EXT-100), understand the codebase (Phase 0), revive CI (EXT-110), get the registration flow into shape (fix it in place, or migrate it cleanly), build two features on top of it, and finish by covering the flows with e2e tests (BEVN-205). The optional BEVN-101 (query performance) is not required but strongly recommended.
+| Entity       | Key fields                                                                            |
+| ------------ | ------------------------------------------------------------------------------------- |
+| Conference   | Id, Title, Description, Location, StartDate, EndDate, Status                          |
+| Session      | Id, Title, Description, StartTime, EndTime, Capacity, ConferenceId, SpeakerId, RoomId |
+| Speaker      | Id, FirstName, LastName, Bio, Email                                                   |
+| Room         | Id, Name, Capacity, Location                                                          |
+| Attendee     | Id, FirstName, LastName, Email                                                        |
+| Registration | Id, ConferenceId, AttendeeId, RegisteredAt, Status                                    |
 
-**Numbering.** `BEVN-xxx` tasks are taken **verbatim** from the original BrownEvents task library — don't be surprised by gaps in the numbers. `EXT-xxx` tasks were added for this pilot. Where a pilot-specific requirement extends an original task, it appears as a marked **"Pilot addition"** block — the original text above it is untouched.
+## Task route
 
-Each task's text lives in its own file under [`tasks/`](tasks/) in this repository. In your first task (EXT-100) you import the whole route as GitHub Issues into your working repository — from then on, when starting a session, hand the agent the current task's issue rather than this whole document: extra context hurts the agent just as it hurts you.
+Work individually and complete tasks in order.
 
-Beyond the main route there are **[side quests](side-quests/README.md)** — six optional assignments for the highly motivated, about the internals of the process itself: project knowledge for agents, hooks, a critic before merge, your own skill, an autonomous run, the cost of your work. They don't affect the main route's assessment; each explains why it exists.
+Choose the track for the backend stack you can review and verify yourself. Do not choose a track only because the agent can implement it.
 
-## The Code
+Record your choice in the EXT-100 Pull Request and explain why you chose it.
 
-The code lives in a separate template repository: **[brown-events-pilot](https://github.com/dzmitry-varabei/brown-events-pilot)**.
+### Common tasks
 
-1. Click **Use this template** → create **your own copy** (private is recommended — your devlog and report will live there).
-2. If your copy is private, add the reviewer as a collaborator.
-3. All your work happens in your copy: issues, branches, PRs, the report.
+Both tracks begin with the same five tasks.
 
-To take part in the pilot (and for any questions) — write in the [chat](https://t.me/+u5HQoDbqaO4yMTI6).
+|   # | Task                                            | Purpose                                     | Mode      |
+| --: | ----------------------------------------------- | ------------------------------------------- | --------- |
+|   1 | [EXT-100](tasks/EXT-100-import-issues-mcp.md)   | Import the route as GitHub Issues using MCP | Free-form |
+|   2 | [BEVN-001](tasks/BEVN-001-codebase-mapping.md)  | Codebase mapping                            | Free-form |
+|   3 | [BEVN-002](tasks/BEVN-002-api-documentation.md) | API documentation                           | Free-form |
+|   4 | [BEVN-003](tasks/BEVN-003-tech-debt-audit.md)   | Technical debt audit                        | Free-form |
+|   5 | [EXT-110](tasks/EXT-110-revive-ci.md)           | Restore CI with GitHub Actions              | Free-form |
 
-## Tools
+### Track A: .NET
 
-- **A console AI agent** — required: Claude Code, Codex CLI, Gemini CLI, Copilot CLI, or Pi. Cursor, web chats, and IDE plugins won't do — their sessions don't make it into the report (see [codemie-analytics.md](codemie-analytics.md)).
-- **Node.js 20+** — to build the report at the end.
-- **Docker** — `docker-compose up --build` brings up the whole application (run instructions are in the code repository's README).
+Keep the existing .NET backend, fix its known problems, then build the new features on top of it.
 
-## Working Rules
+|   # | Task                                                    | Purpose                                   | Mode        |
+| --: | ------------------------------------------------------- | ----------------------------------------- | ----------- |
+|   6 | [BEVN-104](tasks/BEVN-104-standardize-api-responses.md) | Standardize API responses and errors      | Free-form   |
+|   7 | [BEVN-107](tasks/BEVN-107-input-validation.md)          | Add input validation                      | Free-form   |
+|   8 | [BEVN-109](tasks/BEVN-109-transaction-boundaries.md)    | Fix transaction boundaries                | Free-form   |
+|  \* | [BEVN-101](tasks/BEVN-101-sessions-page-slow.md)        | Fix the sessions page N+1 query           | Free-form   |
+|   9 | [BEVN-115](tasks/BEVN-115-registration-modal-state.md)  | Fix stale state in the registration modal | Free-form   |
+|  10 | [BEVN-202](tasks/BEVN-202-session-waitlist.md)          | Session waitlist                          | Spec-driven |
+|  11 | [BEVN-203](tasks/BEVN-203-registration-dashboard.md)    | Attendee registration dashboard           | Spec-driven |
+|  12 | [BEVN-205](tasks/BEVN-205-e2e-suite.md)                 | End-to-end test suite                     | Spec-driven |
 
-These rules are what threads the task number through the whole chain: ticket → branch → agent sessions → commits → PR. Without them the report is unreadable, so they are mandatory.
+### Track B: TypeScript
 
-1. **One task — one branch.** Before starting a task: `git checkout -b BEVN-001-codebase-map` (task number + a short slug). Run your agent only from this branch.
-2. **Start the first message of every agent session with the task number:** "*BEVN-104: bring the API responses to a single format...*". This becomes the session's name in the report.
-3. **Commits carry the task number:** `docs: add architecture map (BEVN-001)`.
-4. **One task — one Pull Request** in your repository: from the task branch into `main`, the number in the PR title, a link to the task's issue in the description (`Closes #N`). Once you've checked the Definition of Done is met — merge it yourself and move to the next task.
+Replace the .NET backend with NestJS. Fix the known backend problems during the migration, then build the same features on the migrated backend.
 
-The number of sessions, attempts, and clarifications is **not penalized** — work as you normally would. What will be looked at is the approach: how you frame the task, how you iterate, whether you drive it to a result.
+|   # | Task                                                   | Purpose                                          | Mode        |
+| --: | ------------------------------------------------------ | ------------------------------------------------ | ----------- |
+|  \* | [BEVN-101](tasks/BEVN-101-sessions-page-slow.md)       | Fix the sessions page N+1 query before migration | Free-form   |
+|   6 | [EXT-150](tasks/EXT-150-migrate-backend-ts.md)         | Migrate the backend to NestJS                    | Spec-driven |
+|   7 | [BEVN-115](tasks/BEVN-115-registration-modal-state.md) | Fix stale state in the registration modal        | Free-form   |
+|   8 | [BEVN-202](tasks/BEVN-202-session-waitlist.md)         | Session waitlist                                 | Spec-driven |
+|   9 | [BEVN-203](tasks/BEVN-203-registration-dashboard.md)   | Attendee registration dashboard                  | Spec-driven |
+|  10 | [BEVN-205](tasks/BEVN-205-e2e-suite.md)                | End-to-end test suite                            | Spec-driven |
 
-## Process: Free-Form and Spec-Driven
+\* BEVN-101 is optional but recommended.
 
-Every task in the route tables above has its mode marked:
+### Task numbering
 
-- **Free-form** (EXT-100, discovery, EXT-110, the stabilization fixes, BEVN-101, the frontend fix) — work with your agent however you like.
-- **Spec-driven** (the EXT-150 migration on Track B; BEVN-202, BEVN-203, and BEVN-205 on both tracks) — before the first line of code there must be a spec (what exactly is being built, contentious cases resolved) and a plan (how, step by step). Both documents are committed into the task branch together with the code — the reviewer will read them before the diff. For the migration this is not a formality: a migration without a plan burns days.
+`BEVN-xxx` tasks come from the original BrownEvents task library, so gaps in their numbers are expected.
 
-  - In Claude Code, install the [superpowers](https://github.com/obra/superpowers) plugin for this: its brainstorming → spec → plan → implementation flow does exactly that, saving the spec and plan under `docs/superpowers/`.
-  - If you work in another agent — reproduce the same flow: `spec.md` and `plan.md` files in the PR are mandatory.
+`EXT-xxx` tasks were added for this pilot.
 
-**CI as a gate.** Starting from the task after EXT-110, a PR merges only with green CI. A red pipeline is part of the task, not background noise.
+When the pilot adds requirements to an original task, they appear in a marked **Pilot addition** section.
 
-## Development Log and Defense
+Each task has its own file under [`tasks/`](tasks/).
 
-Keep `docs/devlog.md` — a work journal, a few lines after each task. Both the agent (ask it at the end of a session) and you can write it; what matters is that it holds *your* take, not a retelling of the diff:
+EXT-100 imports the tasks for your selected route into your working repository as GitHub Issues. After that, use the current issue as the agent's task context instead of passing this README into every session.
 
-- what you did and what came of it;
-- which decisions the agent made *on its own*, and why you accepted or redid them;
-- where you had to step in by hand;
-- what you would do differently.
+### Side quests
 
-The devlog is a per-task checkpoint: the PR template in your repository has an "devlog updated" checkbox, and a task doesn't count as closed without its entry. It is not paperwork for its own sake. The pilot ends with a **defense**: a call with a trainer where you talk through your work. A good devlog is a ready-made outline for that story; without one, weeks later you won't remember half of it.
+The repository also contains six optional [side quests](side-quests/README.md). They cover agent project knowledge, hooks, pre-merge criticism, custom skills, autonomous execution, and development cost.
 
-## Final Report
+Side quests do not affect assessment of the main route.
 
-Once every task of your track is merged, build the report on your work with the agent. From the repository folder:
+## Repository setup
+
+The application code is in the [brown-events-pilot](https://github.com/dzmitry-varabei/brown-events-pilot) template repository.
+
+1. Select **Use this template** and create your own repository.
+2. A private repository is recommended because it will contain your devlog and final report.
+3. If the repository is private, add the reviewer as a collaborator.
+4. Do all task work in your copy, including issues, branches, commits, Pull Requests, the devlog, and the final report.
+
+For pilot questions, use the [Telegram chat](https://t.me/+u5HQoDbqaO4yMTI6).
+
+## Required tools
+
+### Console AI agent
+
+Use one of these console agents:
+
+- Claude Code
+- Codex CLI
+- Gemini CLI
+- Copilot CLI
+- Pi
+
+Cursor, web chats, and IDE plugins do not satisfy this requirement because their sessions are not included in the final analytics report. See [codemie-analytics.md](codemie-analytics.md) for details.
+
+### Node.js
+
+Node.js 20 or newer is required to generate the final report.
+
+### Docker
+
+Use Docker to run the application.
+
+The code repository README contains the full startup instructions. The complete application can be started with:
+
+```bash
+docker-compose up --build
+```
+
+## Traceability rules
+
+Every task must be traceable through:
+
+```text
+GitHub Issue
+→ branch
+→ agent session
+→ commits
+→ Pull Request
+```
+
+Follow these rules for every task.
+
+1. Create one branch per task. Use the task ID and a short slug.
+
+   ```bash
+   git checkout -b BEVN-001-codebase-map
+   ```
+
+   Run the agent for that task only from this branch.
+
+2. Start the first message of every agent session with the task ID.
+
+   ```text
+   BEVN-104: bring the API responses to a single format...
+   ```
+
+   The analytics report uses this first message to identify the session.
+
+3. Include the task ID in related commit messages.
+
+   ```text
+   docs: add architecture map (BEVN-001)
+   ```
+
+4. Create one Pull Request per task from the task branch into `main`.
+
+   The PR must:
+   - include the task ID in its title;
+   - link the corresponding GitHub Issue with `Closes #N`;
+   - satisfy the task's Definition of Done;
+   - include the required devlog update.
+
+   Review the result, then merge the PR yourself before moving to the next task.
+
+You may use as many agent sessions, attempts, and clarifications as needed. Session count is not graded. The reviewer is interested in how you define tasks, verify decisions, correct problems, and reach a working result.
+
+## Development process
+
+Tasks use one of two modes.
+
+### Free-form
+
+There is no prescribed agent workflow. Work with the agent in whatever way helps you complete and verify the task.
+
+### Spec-driven
+
+Before implementation begins, create:
+
+1. a specification that defines what will be built and resolves unclear or disputed cases;
+2. an implementation plan with the steps needed to build and verify it.
+
+Commit both documents to the task branch together with the implementation.
+
+If you use Claude Code, install the [superpowers](https://github.com/obra/superpowers) plugin and use its brainstorming, specification, planning, and implementation workflow. It stores the documents under `docs/superpowers/`.
+
+If you use another console agent, follow an equivalent process. The Pull Request must contain `spec.md` and `plan.md`.
+
+The following tasks are spec-driven:
+
+- EXT-150 on Track B;
+- BEVN-202;
+- BEVN-203;
+- BEVN-205.
+
+### CI gate
+
+EXT-110 restores CI.
+
+Starting with the next task, merge a Pull Request only when CI is green. If the pipeline fails because of your changes, fixing it is part of the current task.
+
+## Development log
+
+Maintain `docs/devlog.md`.
+
+Add a short entry after every task. The entry should record your judgment about the work rather than summarize the diff.
+
+Cover what matters:
+
+- what you changed and what result you got;
+- decisions the agent made independently, including whether you accepted or changed them;
+- places where you had to intervene manually;
+- what you would do differently next time.
+
+You or the agent may write the entry, but it must reflect your assessment of the work.
+
+The Pull Request template includes a `devlog updated` checkbox. A task is not complete until its devlog entry exists.
+
+You will use the devlog during the final defense, so write it while the decisions are still fresh.
+
+## Final report
+
+After all required tasks for your track are merged, generate the analytics report from the repository directory:
 
 ```bash
 npx -y -p @codemieai/code codemie analytics --report \
@@ -128,22 +260,37 @@ npx -y -p @codemieai/code codemie analytics --report \
   --report-format both --report-output ./report/report.html
 ```
 
-`--project brown-events-pilot` filters by folder name: if you cloned the repository into a differently named folder, substitute yours. The `--last 30d` window covers 14–20 days of work with a margin; if you worked longer — give exact dates (`--from ... --to ...`).
+The `--project brown-events-pilot` argument filters sessions by the repository folder name. If your local folder has a different name, use that name instead.
 
-Then:
+The `--last 30d` window is enough for the expected 14 to 20 day schedule. If your work spans more than 30 days, use exact dates with `--from` and `--to`.
 
-1. **Open `report/report.html` in a browser** and check it with your own eyes: only this project's sessions inside, nothing extra. What gets into the report and what doesn't — see [codemie-analytics.md](codemie-analytics.md); in short: session metrics, branches, and the text of each session's first message, but no full dialogues and no file contents.
-2. **Commit both files** (`report/report.html`, `report/report.json`) as the final PR into your repository.
-3. **Tell the reviewer** the task is done.
+Before submitting:
 
-## What Will Be Assessed
+1. Open `report/report.html` in a browser.
+2. Check that it contains only sessions related to this project.
+3. Review [codemie-analytics.md](codemie-analytics.md) if you need to confirm what the report contains. It includes session metrics, branches, and the first message of each session. It does not include full conversations or file contents.
+4. Commit both generated files:
+   - `report/report.html`
+   - `report/report.json`
 
-- The solution itself: is each task's Definition of Done met; the quality of the code and documents.
-- The spec and plan in spec-driven tasks: completeness, resolved forks, whether the implementation follows the plan.
-- Traceability: can the "task → sessions → commits → PR" chain be read from the repository and the report; is CI green on merges after EXT-110.
-- Your work with the agent, per the report and the devlog: how you frame tasks, how you iterate, whether you notice decisions the agent made silently — not the number of attempts.
-- The defense: a coherent account of your work on the final call.
+5. Create and merge the final Pull Request.
+6. Tell the reviewer that the task is complete.
+
+## Assessment
+
+The reviewer will assess:
+
+- whether each task meets its Definition of Done;
+- the quality of the code and documentation;
+- the specification and plan for spec-driven tasks;
+- whether implementation follows those documents;
+- traceability from task to agent sessions, commits, and Pull Request;
+- green CI for merges after EXT-110;
+- how you use the agent, verify its work, and handle its decisions;
+- your explanation of the work during the final defense.
+
+The number of agent attempts or sessions is not an assessment criterion.
 
 ## Questions
 
-If something won't start, won't build, or is worded unclearly — write to the reviewer right away instead of losing days fighting the environment. Fighting legacy code is part of the task; fighting the instructions is not.
+If the application does not start, the build fails for reasons unrelated to your work, or an instruction is unclear, contact the reviewer instead of spending days guessing what the task expects.

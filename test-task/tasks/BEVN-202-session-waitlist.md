@@ -1,15 +1,19 @@
-# BEVN-202 — Session Waitlist
+# BEVN-202: Session waitlist
 
-> Phase 2 — New Features · both tracks · SPEC-DRIVEN
-> Rules & route: [README.md](../README.md)
+> Phase 2: New features | Both tracks | Spec-driven
+>
+> Rules and route: [README.md](../README.md)
 
-When a session has reached its capacity, an attendee can join a waitlist. If a registered attendee cancels, the first person on the waitlist is automatically promoted to a confirmed registration. This promotion should be logged. The session detail page shows current registration count, capacity, and waitlist count.
+Add a waitlist for full sessions. An attendee can join the waitlist after a session reaches capacity. When a confirmed attendee cancels, promote the first waitlisted attendee automatically and log the promotion.
 
-**Definition of Done:**
+The session detail page should show the current registration count, capacity, and waitlist count.
+
+## Definition of done
+
 - [ ] `POST /api/sessions/{id}/waitlist` adds an attendee to the waitlist
-- [ ] Registering for a session at capacity returns 409 — does not auto-waitlist
-- [ ] Cancelling a confirmed registration triggers automatic promotion of the next waitlisted attendee
-- [ ] Promotion is logged at INFO level with attendee ID and session ID
-- [ ] `GET /api/sessions/{id}` response includes `registeredCount`, `capacity`, `waitlistCount`
-- [ ] Session detail page shows capacity and waitlist count
-- [ ] Unit tests cover: join waitlist, cancel triggers promotion, waitlist ordering
+- [ ] Registering for a full session returns `409` and does not add the attendee to the waitlist
+- [ ] Cancelling a confirmed registration promotes the next waitlisted attendee
+- [ ] Log each promotion at `INFO` level with the attendee ID and session ID
+- [ ] `GET /api/sessions/{id}` includes `registeredCount`, `capacity`, and `waitlistCount`
+- [ ] The session detail page shows capacity and waitlist count
+- [ ] Unit tests cover joining the waitlist, promotion after cancellation, and waitlist ordering

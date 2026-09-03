@@ -1,16 +1,22 @@
-# EXT-100 — Import the Route as GitHub Issues (MCP)
+# EXT-100: Import the route as GitHub Issues with MCP
 
-> Setup · both tracks · free-form
-> Rules & route: [README.md](../README.md)
+> Setup | Both tracks | Free-form
+>
+> Rules and route: [README.md](../README.md)
 
-The route you are about to walk lives as markdown files in this program repository. Your **working repository** (your copy of the [code template](https://github.com/dzmitry-varabei/brown-events-pilot)) needs its own tracker: one GitHub Issue per task, so that every branch and PR can reference the issue it implements — the same "ticket → branch → PR" chain used on real projects.
+The task route is stored as Markdown in this repository. Your working repository needs one GitHub Issue for each task so branches and Pull Requests can reference the work they implement.
 
-Don't click the issues together by hand. This is your first agent task: set up the **GitHub MCP server** for your coding agent, and have the agent create the issues for you. MCP (Model Context Protocol) is how agents get tools beyond the local filesystem — knowing how to connect and use an MCP server is part of the job.
+Configure the GitHub MCP server for your coding agent and use the agent to create the issues. MCP gives the agent tools for working with GitHub directly.
 
-**Definition of Done:**
-- [ ] GitHub MCP server configured for your coding agent (how you did it — a couple of lines in `docs/devlog.md`)
-- [ ] The PR description states which track you chose (A or B) and one sentence on why — this is where your track choice is recorded
-- [ ] Your repository copy has one issue per task of your chosen track, in route order; the optional BEVN-101 is labeled as optional
-- [ ] Each issue: title `<ID> — <task name>`, body contains the full task text copied from this repository
-- [ ] The issues were created by the agent through MCP — not by hand in the web UI
-- [ ] From this point on, every PR description references its issue (`Closes #N`)
+Do not create the issues manually in the GitHub web UI.
+
+## Definition of done
+
+- [ ] Configure the GitHub MCP server for your coding agent and record the setup briefly in `docs/devlog.md`
+- [ ] State your chosen track, A or B, in the Pull Request description and give one sentence explaining why
+- [ ] Create one issue for each task in your chosen track, in route order
+- [ ] Label the optional BEVN-101 issue as optional
+- [ ] Use the issue title format `<ID> — <task name>`
+- [ ] Copy the full task text from this repository into each issue body
+- [ ] Create the issues through the agent and GitHub MCP, not manually in the web UI
+- [ ] Starting with the next task, reference the related issue in every Pull Request description with `Closes #N`

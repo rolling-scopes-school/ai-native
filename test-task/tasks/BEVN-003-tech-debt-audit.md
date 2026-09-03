@@ -1,17 +1,28 @@
-# BEVN-003 — Technical Debt Audit
+# BEVN-003: Technical debt audit
 
-> Phase 0 — Discovery · both tracks · free-form
-> Rules & route: [README.md](../README.md)
+> Phase 0: Discovery | Both tracks | Free-form
+>
+> Rules and route: [README.md](../README.md)
 
-Read the codebase thoroughly — both backend and frontend — and produce a structured audit document listing every quality issue you find. Each issue should be actionable: a reader should know exactly where to look and what to change. Group issues by category and assign severity. The output of this task feeds directly into the Phase 1 stabilization work.
+Review both the backend and frontend and write a structured technical debt audit. Each issue should identify where the problem is, why it matters, and what should change. Group related issues and assign a severity.
 
-**Definition of Done:**
-- [ ] Both backend and frontend covered in the audit
-- [ ] Each issue has: location (file + line where relevant), description, severity (High / Medium / Low), suggested fix
-- [ ] Issues grouped by category (e.g. performance, correctness, security, maintainability, configuration)
-- [ ] At least 10 distinct issues documented (there are more than 10 intentional ones — find them)
-- [ ] Saved as `docs/tech-debt-audit.md` in the project root
+This audit feeds into the stabilization work that follows.
 
-> **Pilot addition:** the audit must explicitly cover at least these three areas — blocking
-> calls on async code, query efficiency (how the ORM actually loads related data), and CORS
-> configuration. If you find nothing wrong in one of them, say so and explain why.
+## Definition of done
+
+- [ ] Cover both backend and frontend
+- [ ] For each issue, record the file and line where relevant, description, severity, and suggested fix
+- [ ] Use `High`, `Medium`, or `Low` severity
+- [ ] Group issues by category, such as performance, correctness, security, maintainability, or configuration
+- [ ] Document at least 10 distinct issues. The codebase contains more than 10 intentional issues
+- [ ] Save the audit as `docs/tech-debt-audit.md` in the project root
+
+> **Pilot addition**
+>
+> Explicitly review these areas:
+>
+> - blocking calls on async code
+> - query efficiency, including how the ORM loads related data
+> - CORS configuration
+>
+> If you find no problem in one of these areas, record that conclusion and explain why.

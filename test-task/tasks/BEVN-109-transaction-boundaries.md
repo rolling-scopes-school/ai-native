@@ -1,11 +1,15 @@
-# BEVN-109 — Fix Transaction Boundaries in Multi-Step Writes
+# BEVN-109: Fix transaction boundaries in multi-step writes
 
-> Phase 1A — Stabilize · Track A only · free-form
-> Rules & route: [README.md](../README.md)
+> Phase 1A: Stabilize | Track A only | Free-form
+>
+> Rules and route: [README.md](../README.md)
 
-The registration flow saves an attendee and then saves a registration in two separate `SaveChangesAsync` calls with no transaction. If anything fails between the two saves, the database is left in an inconsistent state — an attendee row with no matching registration. Find all multi-step write operations and make them atomic.
+The registration flow saves an attendee and a registration in separate `SaveChangesAsync` calls without a transaction. A failure between those writes can leave an attendee without a matching registration.
 
-**Definition of Done:**
-- [ ] Multi-step write operations are wrapped in a transaction
-- [ ] A brief comment in each transactional method explains what state would be corrupted without the transaction
-- [ ] Existing unit tests still pass
+Find all multi-step write operations and make them atomic.
+
+## Definition of done
+
+- [ ] Wrap every multi-step write operation in a transaction
+- [ ] Add a short comment to each transactional method stating which inconsistent state the transaction prevents
+- [ ] Keep all existing unit tests passing

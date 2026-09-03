@@ -1,14 +1,19 @@
-# EXT-110 — Revive CI on GitHub Actions
+# EXT-110: Revive CI on GitHub Actions
 
-> CI Revival · both tracks · free-form
-> Rules & route: [README.md](../README.md)
+> CI revival | Both tracks | Free-form
+>
+> Rules and route: [README.md](../README.md)
 
-The repository contains `.gitlab-ci.yml` — a CI pipeline from the platform the project used to live on. On GitHub it is dead weight: GitHub never executes it, so pull requests get no builds and no test runs. Figure out what the old pipeline did, and bring CI back to life on GitHub Actions. The docker-publish jobs are not needed (there is no registry to push to) — port only what earns its keep.
+The repository still contains `.gitlab-ci.yml` from its previous hosting setup. GitHub does not run that pipeline, so Pull Requests currently have no automated build or test checks.
 
-**Definition of Done:**
-- [ ] PR description summarizes what the old GitLab pipeline did, job by job, and what was ported vs dropped (and why)
-- [ ] `.github/workflows/ci.yml` exists and runs on every pull request and on pushes to `main`
-- [ ] Backend job: restore, build, and run unit tests
-- [ ] Frontend job: install and build
-- [ ] The workflow is green on this task's own PR
-- [ ] `.gitlab-ci.yml` is removed — dead config confuses the next reader
+Review the old pipeline and recreate the relevant build and test jobs with GitHub Actions. Do not port Docker publishing jobs because this pilot has no registry.
+
+## Definition of done
+
+- [ ] Summarize every old GitLab job in the Pull Request description and state what was ported or removed, with the reason
+- [ ] Add `.github/workflows/ci.yml`
+- [ ] Run the workflow on every Pull Request and on pushes to `main`
+- [ ] Backend CI restores dependencies, builds the backend, and runs unit tests
+- [ ] Frontend CI installs dependencies and builds the frontend
+- [ ] The workflow is green on this task's Pull Request
+- [ ] Remove `.gitlab-ci.yml`
