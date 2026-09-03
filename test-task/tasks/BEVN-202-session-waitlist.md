@@ -20,24 +20,28 @@ When a session has reached its capacity, an attendee can join a waitlist. If a r
 
 On a spec-driven task it is easy to experience the pipeline as ceremony — you write a spec because the rules demand one, you commit a plan because the reviewer will look for it. But the pipeline exists for a different reason: the agent writes the code, and **you are present at every step as the operator** — the person who catches what the agent got wrong *before* it becomes expensive. You validate with what you know, and you cannot check a layer you don't understand. On this task you make that work visible.
 
-The task flows through the conveyor:
+The task flows through the conveyor — and not in a straight line: three steps can send work back.
 
+```mermaid
+flowchart LR
+    T[ticket] --> S[spec] --> P[plan] --> C[critic] --> I[implementation] --> CH[checks] --> E[evidence] --> PR[PR]
+    C -. findings: fix the plan .-> P
+    CH -. red: back to the code .-> I
+    PR -. review comments .-> I
 ```
-ticket → spec → plan → critic → implementation → checks → evidence → PR
-```
 
-The operator is present on every step, and every step has its own job:
+Both of you are present on every step, and on every step the jobs are different:
 
-| Conveyor step | What the operator does |
-|---|---|
-| **ticket** | understands the requirement, finds the parts of the system it touches, asks questions where it is unclear |
-| **spec** | writes acceptance criteria; resolves the contentious cases in writing, before any code |
-| **plan** | reads the agent's plan end to end and checks it against the spec |
-| **critic** | runs an adversarial pass on the plan — a fresh session that gets only the spec and the plan and looks for gaps and silent decisions; gives every finding an explicit verdict |
-| **implementation** | watches context and cost, stops early, intervenes by hand when needed |
-| **checks** | knows what the tests actually run and what really blocks the merge |
-| **evidence** | discipline: ticket number in the branch, proofs in the repository |
-| **PR** | reads the diff, validates the result independently of the agent's words |
+| Conveyor step | What the coding agent does | What the operator does |
+|---|---|---|
+| **ticket** | explores the codebase on request | understands the requirement, finds the parts of the system it touches, asks questions where it is unclear |
+| **spec** | drafts the spec from your conversation | owns the acceptance criteria; resolves the contentious cases in writing, before any code |
+| **plan** | writes the step-by-step plan | reads it end to end and checks it against the spec |
+| **critic** | a *fresh* agent session performs the adversarial pass | commissions it, hands it only the spec and the plan, and gives every finding an explicit verdict |
+| **implementation** | writes the code, runs commands, fixes what breaks | watches context and cost, stops early, intervenes by hand when needed |
+| **checks** | runs tests and lint, chases failures | knows what the tests actually run and what really blocks the merge |
+| **evidence** | puts the ticket number where it is told to | enforces the discipline: ticket number in the branch, proofs in the repository |
+| **PR** | drafts the description, summarizes the change | reads the diff, validates the result independently of the agent's summary |
 
 **Tooling:** unchanged — the usual spec-driven setup (in Claude Code, the superpowers plugin, whose brainstorming → spec → plan → implementation flow drives part of this conveyor; in another agent, the equivalent flow with `spec.md` and `plan.md` committed). Notice, though, that the tooling orchestrates only part of the map: nobody runs the critic, keeps the evidence, or validates the PR for you. Seeing where the automation ends and the operator begins is part of the exercise.
 
@@ -55,3 +59,5 @@ The operator is present on every step, and every step has its own job:
 - [ ] The *plan* or *critic* entry records at least one silent decision the agent made that the ticket didn't ask for (there is always at least one) — with your explicit verdict on it
 - [ ] The *PR* entry records how you validated the result yourself, without relying on the agent's summary
 - [ ] A closing debrief: which step turned out to be the most work for you as operator — and is that where you expected it?
+
+**What stays in whose head.** When this task merges, the agent's head — its context window — is compacted and discarded. Everything it "learned" about waitlists, promotions, and your codebase: gone. Tomorrow's session arrives as a bright, confident stranger who has never heard of BEVN-202. (This is not a bug to fix but a fact to design around — it is why project knowledge files and skills exist; see [EXT-301](../side-quests/EXT-301-project-knowledge-file.md) and [EXT-304](../side-quests/EXT-304-first-skill.md).) What stays in *your* head is different: the domain, the map of the system, the scar from the silent decision you almost let through. Of the two of you, only one accumulates — and the journal is how you check that it's you.
