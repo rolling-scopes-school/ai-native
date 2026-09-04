@@ -26,11 +26,11 @@ The task flows through a fixed sequence of steps — the [AI SDLC](../../en/requ
 |---|---|---|
 | **ticket** | your working session starts; context: the ticket text (from the tracker via MCP, or pasted by you) + the codebase to explore | understand the requirement, find what it touches, ask questions |
 | **spec** | same session: brainstorming → `spec.md` | own the acceptance criteria; settle contentious cases in writing |
-| **plan** | same session; context: the spec + the codebase → `plan.md` | read it end to end, check against the spec — **gate 1: approve**; nothing is built before your verdict |
-| **critic** | a **fresh session**, given *only* the spec and the plan — its power is in what it does *not* see | commission it; give every finding an explicit verdict |
+| **plan** | same session; context: the spec + the codebase → `plan.md` | read it end to end, check it against the spec |
+| **critic** | a **fresh session**: the spec, the plan, the code where the plan's claims need checking — but none of your conversation and its assumptions | commission it; resolve every finding with an explicit verdict — then **gate 1: approve the plan**; nothing is built before your verdict |
 | **implementation** | the coding session; context: plan, project rules, the code — and it grows with every step | watch context and cost; stop early; intervene by hand |
 | **checks** | no session at all — CI and hooks run with no memory and no opinions | know what the tests actually run and what really blocks the merge |
-| **evidence** | none: artifacts in the repository | ticket in the branch; spec, plan, devlog, checks record — committed |
+| **evidence** | none: artifacts in the repository | task ID in the branch name; spec, plan, devlog, checks record — committed |
 | **PR** | the agent drafts the description *from its own context* — exactly why you don't rely on it | read the diff yourself — **gate 2: accept or reject** |
 
 It is not a straight line — work gets sent back:
@@ -39,7 +39,7 @@ It is not a straight line — work gets sent back:
 - red checks and PR review comments reopen the **code**;
 - implementation can even reopen the **spec**, if it proves the acceptance criteria wrong.
 
-One naming note: the *critic* is a pattern, not a single step — a fresh session with a narrow brief and an explicit verdict on every finding. In production it runs at least twice: on the plan, as here, and again on the completed diff before merge — that second pass is exactly [EXT-303](../side-quests/EXT-303-critic-before-merge.md), and on a real factory a review gate like that blocks the path to the PR. This task exercises the plan-level pass. And a critic is not a gate: a critic advises, a gate decides — both gates here are yours.
+One naming note: the *critic* is a pattern, not a single step — a fresh session with a narrow brief and an explicit verdict on every finding. A mature pipeline runs it at several points, and the depth depends on the risk. Here it runs on the plan; [EXT-303](../side-quests/EXT-303-critic-before-merge.md) runs the same pattern on the completed diff before merge, and on a real factory a review gate like that blocks the path to the PR. And a critic is not a gate: a critic advises, a gate decides — both gates here are yours.
 
 **Tooling:** the usual spec-driven setup (superpowers in Claude Code, or the equivalent flow with `spec.md` and `plan.md` committed). It orchestrates only part of the map: nobody runs the critic, keeps the evidence, or validates the PR for you. Seeing where the automation ends and the operator begins is part of the exercise.
 
