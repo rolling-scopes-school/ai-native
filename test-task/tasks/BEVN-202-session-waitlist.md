@@ -28,7 +28,7 @@ The task flows through a fixed sequence of steps — the [AI SDLC](../../en/requ
 | **spec** | same session: brainstorming → `spec.md` | own the acceptance criteria; settle contentious cases in writing |
 | **plan** | same session; context: the spec + the codebase → `plan.md` | read it end to end, check it against the spec |
 | **critic** | a **fresh session**: the spec, the plan, the code where the plan's claims need checking — but none of your conversation and its assumptions | commission it; resolve every finding with an explicit verdict — then **gate 1: approve the plan**; nothing is built before your verdict |
-| **implementation** | the coding session; context: plan, project rules, the code — and it grows with every step | watch context and cost; stop early; intervene by hand |
+| **implementation** | a session that could start fresh: `plan.md` + project rules + the code are meant to be enough — if it only works with your old conversation loaded, the plan is incomplete; the context grows with every step | watch context and cost; stop early; intervene by hand |
 | **checks** | no session at all — CI and hooks run with no memory and no opinions | know what the tests actually run and what really blocks the merge |
 | **evidence** | none: artifacts in the repository | task ID in the branch name; spec, plan, devlog, checks record — committed |
 | **PR** | the agent drafts the description *from its own context* — exactly why you don't rely on it | read the diff yourself — **gate 2: accept or reject** |
