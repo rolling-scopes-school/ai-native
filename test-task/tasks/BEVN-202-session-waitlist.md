@@ -20,22 +20,26 @@ When a session has reached its capacity, an attendee can join a waitlist. If a r
 
 On a spec-driven task it is easy to experience the pipeline as ceremony — a spec because the rules demand one, a plan because the reviewer will look for it. The pipeline exists for a different reason: the agent writes the code, and **you are present at every step as the operator** — the person who catches what the agent got wrong *before* it becomes expensive to change. You validate with what you know; you cannot check a layer you don't understand. Why a delivery process is built from these steps at all is the subject of [doc 03: The AI factory](../../en/03-ai-factory.md) — this task is where you feel it in your hands.
 
-The task flows through a fixed sequence of steps — the [AI SDLC](../../en/requirements/ai-sdlc.md) in its smallest practical form — and not in a straight line: critic findings reopen the plan, red checks and PR review comments reopen the code, and even the spec is reopenable — the acceptance criteria have an owner, not a freeze date. Two points in the sequence are **gates**, where a human gives the explicit verdict: the plan is approved before any code, and the PR is accepted at the end. A critic advises; a gate decides. On this task you hold both roles — don't let that blur the difference.
+The task flows through a fixed sequence of steps — the [AI SDLC](../../en/requirements/ai-sdlc.md) in its smallest practical form:
 
-Both of you are present on every step, and the jobs differ:
-
-| Step | What the coding agent does | What the operator does |
+| Step | The agent side: session and context | The operator's job |
 |---|---|---|
-| **ticket** | explores the codebase on request | understands the requirement, finds the parts of the system it touches, asks questions where it is unclear |
-| **spec** | drafts the spec from your conversation | owns the acceptance criteria; resolves the contentious cases in writing, before any code |
-| **plan** | writes the step-by-step plan | reads it end to end and checks it against the spec |
-| **critic** | a *different*, fresh agent session — not your coding agent — performs the adversarial pass | commissions it, hands it only the spec and the plan, and gives every finding an explicit verdict |
-| **implementation** | writes the code, runs commands, fixes what breaks | watches context and cost, stops early, intervenes by hand when needed |
-| **checks** | runs tests and lint, chases failures | knows what the tests actually run and what really blocks the merge |
-| **evidence** | puts the ticket number where it is told to | enforces traceability: ticket number in the branch; spec, plan, journal, and the record that the checks really ran — committed to the repository |
-| **PR** | drafts the description, summarizes the change | reads the diff, validates the result independently of the agent's summary |
+| **ticket** | your working session starts; context: the ticket text (from the tracker via MCP, or pasted by you) + the codebase to explore | understand the requirement, find what it touches, ask questions |
+| **spec** | same session: brainstorming → `spec.md` | own the acceptance criteria; settle contentious cases in writing |
+| **plan** | same session; context: the spec + the codebase → `plan.md` | read it end to end, check against the spec — **gate 1: approve**; nothing is built before your verdict |
+| **critic** | a **fresh session**, given *only* the spec and the plan — its power is in what it does *not* see | commission it; give every finding an explicit verdict |
+| **implementation** | the coding session; context: plan, project rules, the code — and it grows with every step | watch context and cost; stop early; intervene by hand |
+| **checks** | no session at all — CI and hooks run with no memory and no opinions | know what the tests actually run and what really blocks the merge |
+| **evidence** | none: artifacts in the repository | ticket in the branch; spec, plan, devlog, checks record — committed |
+| **PR** | the agent drafts the description *from its own context* — exactly why you don't rely on it | read the diff yourself — **gate 2: accept or reject** |
 
-One naming note: the *critic* is a pattern, not a single step — a fresh session with a narrow brief and an explicit verdict on every finding. In production it runs at least twice: on the plan, as here, and again on the completed diff before merge — that second pass is exactly [EXT-303](../side-quests/EXT-303-critic-before-merge.md), and on a real factory a review gate like that blocks the path to the PR. This task exercises the plan-level pass.
+It is not a straight line — work gets sent back:
+
+- critic findings reopen the **plan**;
+- red checks and PR review comments reopen the **code**;
+- implementation can even reopen the **spec**, if it proves the acceptance criteria wrong.
+
+One naming note: the *critic* is a pattern, not a single step — a fresh session with a narrow brief and an explicit verdict on every finding. In production it runs at least twice: on the plan, as here, and again on the completed diff before merge — that second pass is exactly [EXT-303](../side-quests/EXT-303-critic-before-merge.md), and on a real factory a review gate like that blocks the path to the PR. This task exercises the plan-level pass. And a critic is not a gate: a critic advises, a gate decides — both gates here are yours.
 
 **Tooling:** the usual spec-driven setup (superpowers in Claude Code, or the equivalent flow with `spec.md` and `plan.md` committed). It orchestrates only part of the map: nobody runs the critic, keeps the evidence, or validates the PR for you. Seeing where the automation ends and the operator begins is part of the exercise.
 
