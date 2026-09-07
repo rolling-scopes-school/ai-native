@@ -27,3 +27,11 @@ A junior developer should understand these areas and be able to take part in the
 * **Cost awareness (tokenomics)** — see the price of AI work: read token and cost reports, and attribute cost to stages (spec, plan, implementation). Know that on production projects the cost of a task is estimated already at the spec / plan / task level, before implementation starts. Compare approaches by cost. Notice when a task is costing too much, so it can be stopped and re-scoped early.
 
 A junior developer is **not expected to design agent platforms, orchestration pipelines, or the AI factory itself from scratch**. They should be able to work inside the agentic workflow the team has already set up.
+
+## Questions already asked in interviews
+
+Examples of questions candidates have been asked on these projects. Each one maps to an area above.
+
+* How would you onboard an agent into a project? (context engineering; agent tooling)
+* Why were hooks invented? (guardrails and rule automation)
+* What context does the agent get when a session starts? (working with a coding agent; context engineering)
