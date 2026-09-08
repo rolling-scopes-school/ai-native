@@ -27,3 +27,12 @@ A junior developer should understand these areas and be able to take part in the
 * **Maintenance, bug fixing, and refactoring** — investigate bugs in an existing codebase: reproduce the issue, find the likely cause, implement and test a fix. Perform small refactorings without changing the expected behavior.
 
 A junior developer is **not expected to design CI/CD infrastructure, production architecture, monitoring systems, or deployment platforms from scratch**. They should be able to work with the processes and tools the team has already set up.
+
+## Questions already asked in interviews
+
+The first one checks critical thinking: the expected answer is not "because it is in the sprint".
+
+* Why does this task (story) need to be done at all? (working with requirements)
+* Explain how a feature works end-to-end: from the frontend to the database, including the cache. (understanding the system you work in — [BEVN-001](../../test-task/tasks/BEVN-001-codebase-mapping.md) in the test task trains exactly this)
+* Why do we need API documentation? What problems does it solve? ([BEVN-002](../../test-task/tasks/BEVN-002-api-documentation.md))
+* Why CI/CD? (CI pipelines; CD and deployment basics)
