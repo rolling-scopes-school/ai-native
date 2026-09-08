@@ -30,8 +30,6 @@ A junior developer is **not expected to design agent platforms, orchestration pi
 
 ## Questions already asked in interviews
 
-Examples of questions candidates have been asked on these projects. Each one maps to an area above.
-
 * How would you onboard an agent into a project? (context engineering; agent tooling)
 * Why were hooks invented? (guardrails and rule automation)
 * What context does the agent get when a session starts? (working with a coding agent; context engineering)
