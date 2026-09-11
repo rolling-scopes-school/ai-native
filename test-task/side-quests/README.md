@@ -18,3 +18,4 @@ Quests are numbered by the moment they become available. EXT-301 is worth taking
 | [EXT-304](EXT-304-first-skill.md) | Your first skill | any two spec-driven tasks | reusable tooling instead of a fat prompt |
 | [EXT-305](EXT-305-autonomous-contract.md) | An autonomous run on a contract | BEVN-203 | a full task contract, acceptance without intervention |
 | [EXT-306](EXT-306-cost-of-your-work.md) | What your work cost | the final report | tokenomics: cost attribution, what was expensive and why |
+| [EXT-307](EXT-307-odyssey.md) | The Odyssey: your session under glass | BEVN-202 | observability: the session log and the wire — what the model is actually sent |
