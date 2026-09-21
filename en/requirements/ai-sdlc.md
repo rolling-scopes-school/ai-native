@@ -28,8 +28,6 @@ A junior developer should understand these areas and be able to take part in the
 
 A junior developer is **not expected to design agent platforms, orchestration pipelines, or the AI factory itself from scratch**. They should be able to work inside the agentic workflow the team has already set up.
 
-## Questions already asked in interviews
+## Interview questions
 
-* How would you onboard an agent into a project? (context engineering; agent tooling)
-* Why were hooks invented? (guardrails and rule automation)
-* What context does the agent get when a session starts? (working with a coding agent; context engineering)
+Questions asked at interviews for the AI part are collected in a separate document: [Interview questions: the AI part](../interview-questions.md).
