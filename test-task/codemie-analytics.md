@@ -39,7 +39,7 @@ npx -y -p @codemieai/code codemie analytics --report \
 
 1. **Work in a dedicated folder** — your working repository copy — and only in it.
 
-2. **Do the task with your agent**, launching it from that folder — e.g. `claude`, `codex`, or `gemini`. Work as you normally would: the number of attempts and clarifications is not penalized; the overall approach is what's assessed.
+2. **Do the task with your agent**, launching it from that folder — e.g. `claude`, `codex`, or `gemini`. Work as you normally would: the number of attempts and clarifications is not penalized; the overall approach is what's assessed. Don't wait for the end: after your first task, run the command from step 3 once — you will see what one task cost. Watching the price from the first task is what the analytics is for you, not only for the reviewer.
 
 3. **When done, build the report for that folder only** (you can run it from the folder itself). The report must cover **the whole period of the task** — usually 14–20 days, hence the 30-day window in the command:
 

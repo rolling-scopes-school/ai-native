@@ -11,3 +11,4 @@ Beyond the skills below, projects name three qualities they look for in a candid
 - [SDLC](./sdlc.md) — the development lifecycle: from a requirement to production
 - [AI SDLC](./ai-sdlc.md) — how AI is built into the development cycle: the agent, context, specs, control, cost
 - [project-dotnet.md](./project-dotnet.md) — Insurance Platform (.NET / Vue): project-specific candidate requirements
+- [Interview questions: the AI part](../interview-questions.md) — questions asked at interviews, with the AI SDLC area for each

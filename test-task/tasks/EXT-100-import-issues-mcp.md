@@ -14,3 +14,7 @@ Don't click the issues together by hand. This is your first agent task: set up t
 - [ ] Each issue: title `<ID> — <task name>`, body contains the full task text copied from this repository
 - [ ] The issues were created by the agent through MCP — not by hand in the web UI
 - [ ] From this point on, every PR description references its issue (`Closes #N`)
+
+> **Pilot addition — the token.** The GitHub MCP server needs a personal access token. Keep it out of the agent's session. Console agents write the full session log to disk (that is what `codemie analytics` reads), so a token pasted into the chat, or read from a file by the agent, ends up in a log that any other agent or tool on your machine can read. A real question from the Q&A call: the MCP config did not pick up `.env`, so the token was hardcoded into a gitignored `mcp.json` — and the agent still read the file and printed the token into the chat.
+>
+> What to do: keep the MCP config outside the repository, or reference an environment variable instead of the literal token (most agents support this — check your agent's docs); the agent has no reason to read that file. If a token does get printed — revoke it and issue a new one, it is compromised. The reliable fix is a hook that blocks the agent from reading secret files at all (`.env`, the MCP config) — that is exactly [EXT-302](../side-quests/EXT-302-hook-not-reminder.md), and one participant solved it this way.
